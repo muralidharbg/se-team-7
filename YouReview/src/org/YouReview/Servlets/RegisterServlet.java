@@ -1,6 +1,7 @@
 package org.YouReview.Servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,50 +11,56 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.YouReview.Service.LoginService;
-import org.YouReview.dto.User;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class RegisterServlet
  */
-@WebServlet("/Login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/RegisterServlet")
+public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userName,passWord;
+		String userName,passWord,fullName,email;
 		boolean result = false;
+		
+		response.setContentType("text/html");
+		PrintWriter printer = response.getWriter();
 		
 		userName = request.getParameter("userName");
 		passWord = request.getParameter("passWord");
+		fullName = request.getParameter("fullName");
+		email = request.getParameter("email");
 		
+		  
 		LoginService loginService = new LoginService();
 		try
 		{
-			if(!userName.isEmpty() || !passWord.isEmpty())
+			if(!userName.isEmpty() || !passWord.isEmpty() || !fullName.isEmpty() || !email.isEmpty())
 			{
-				result = loginService.authenticate(userName, passWord);
+				result = loginService.register(fullName, email, userName, passWord);
 			}
 		}
 		catch(Exception e)
 		{
-			System.out.println("login failed");
-		}		
+			System.out.println("Registration fail");
+		}
 		
-		if (result)
+		System.out.println("Register page");
+		
+		if(result)
 		{
-			User user = loginService.getuserDetails(userName);
-			request.setAttribute("user", user);
-			//response.sendRedirect("Home.jsp");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");			
-			dispatcher.forward(request, response);			
-			return;
+			response.sendRedirect("Login.jsp");
 		}
 		else
 		{
-			response.sendRedirect("Login.jsp");
+			//printer.print("Username already exist");
+			
+			RequestDispatcher rd = request.getRequestDispatcher("Register.jsp");
+			rd.include(request, response);
+			printer.close();
 			return;
 		}
 		

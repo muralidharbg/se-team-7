@@ -20,13 +20,6 @@
 		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 		<title>Admin</title>
 		<style>
-		/*
-/* Created by Filipe Pina
- * Specific styles of signin, register, component
- */
-/*
- * General styles
- */
 
 body, html{
      height: 100%;
@@ -105,14 +98,14 @@ input::-webkit-input-placeholder {
 	               	</div>
 	            </div> 
 				<div class="main-login main-center">
-					<form class="form-horizontal" method="post" action="#">
+					<form class="form-horizontal" method="post" action="RegisterServlet">
 						
 						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Your Name</label>
+							<label for="name" class="cols-sm-2 control-label">Full Name</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+									<input type="text" class="form-control" name="fullName" id="fullName"  placeholder="Enter your Name"/>
 								</div>
 							</div>
 						</div>
@@ -132,7 +125,7 @@ input::-webkit-input-placeholder {
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+									<input type="text" class="form-control" name="userName" id="userName"  placeholder="Enter your Username"/>
 								</div>
 							</div>
 						</div>
@@ -142,7 +135,7 @@ input::-webkit-input-placeholder {
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+									<input type="password" class="form-control" name="passWord" id="passWord"  placeholder="Enter your Password"/>
 								</div>
 							</div>
 						</div>
@@ -158,7 +151,7 @@ input::-webkit-input-placeholder {
 						</div>
 
 						<div class="form-group ">
-							<button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+							<input type="submit" class="btn btn-primary btn-lg btn-block login-button"/>
 						</div>
 						<div class="login-register">
 				            <a href="Login.jsp">Login</a>
