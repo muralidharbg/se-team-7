@@ -1,9 +1,8 @@
-
-<!------ Include the above in your HEAD tag ---------->
-
-<!DOCTYPE html>
-<html lang="en">
-<head> 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 
@@ -117,54 +116,22 @@ input::-webkit-input-placeholder {
 	    		<ul class="nav navbar-nav navbar-right">
 	    			<li><a href="#" style="color: white">Home</a></li>
 	    			<li><a href="#" style="color: white">Categories</a></li>
-	      		<li><a href="Register.jsp" style="color: white"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+	      		<li><a href="Login.jsp" style="color: white"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
 	    		</ul>
   		</div><!-- /.navbar-collapse -->
 	</nav>
+
+	<h1> Hello, <%=session.getAttribute("userName") %></h1>
 	
-		<div class="container">
-			<div class="row main">
-				<div class="panel-heading">
-	               <div class="panel-title text-center">
-	               		<h1 class="title">YouReview</h1>
-	               		<hr />
-	               	</div>
-	            </div> 
-				<div class="main-login main-center">
-					<form class="form-horizontal" method="post" action="Login">
-						
-						<div class="form-group">
-							<label for="userName" class="cols-sm-2 control-label">Username</label>
-							<div class="cols-sm-5">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="userName" id="userName"  placeholder="Enter your Username"/>
-								</div>
-							</div>
-						</div>
+	<a href="AddProductServlet">
+		<button id="myButton" class="btn btn-primary btn-lg btn-block login-button" style="width: 250px;margin-left:0px;">AddProduct</button>
+	</a>
+	<a href="AddSubCategory.jsp">
+		<button id="myButton" class="btn btn-primary btn-lg btn-block login-button" style="width: 250px;margin-left:0px;">AddCategory</button>
+	</a>
+	<a href="ApproveProducts.jsp">
+		<button id="myButton" class="btn btn-primary btn-lg btn-block login-button" style="width: 250px;margin-left:0px;">Approve Products</button>
+	</a>
 
-						<div class="form-group">
-							<label for="passWord" class="cols-sm-2 control-label">Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="passWord" id="passWord"  placeholder="Enter your Password"/>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="form-group ">
-							<input type="submit" class="btn btn-primary btn-lg btn-block login-button"/>
-						</div>
-						<div class="login-register">
-				            <a href="Register.jsp">Register</a>
-				         </div>
-					</form>
-				</div>
-			</div>
-		</div>
-
-		<script type="text/javascript" src="assets/js/bootstrap.js"></script>
-	</body>
+</body>
 </html>

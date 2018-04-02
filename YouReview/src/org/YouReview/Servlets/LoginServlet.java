@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.YouReview.Service.LoginService;
 import org.YouReview.dto.User;
@@ -18,10 +19,8 @@ import org.YouReview.dto.User;
 @WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userName,passWord;
 		boolean result = false;
@@ -46,8 +45,9 @@ public class LoginServlet extends HttpServlet {
 		{
 			User user = loginService.getuserDetails(userName);
 			request.setAttribute("user", user);
-			//response.sendRedirect("Home.jsp");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");			
+			HttpSession newSession = request.getSession(true);
+			newSession.setAttribute("userName", userName);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("MyAccount.jsp");			
 			dispatcher.forward(request, response);			
 			return;
 		}
