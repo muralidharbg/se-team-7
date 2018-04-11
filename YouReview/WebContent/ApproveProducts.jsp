@@ -1,5 +1,8 @@
-<!------ Include the above in your HEAD tag ---------->
-
+<%@page import="java.util.ArrayList"%>
+<%@page import="org.YouReview.dto.Products"%>
+<%
+	ArrayList<Products> productList = (ArrayList<Products>) request.getAttribute("productList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -119,12 +122,13 @@ $(function() {
 
 </script>
 <style type="text/css">
-	th {
-		padding: 5px
-	}
-	td {
-		padding: 5px
-	}
+th {
+	padding: 5px
+}
+
+td {
+	padding: 5px
+}
 </style>
 </head>
 <body style="background-color: #d3d3d3;">
@@ -184,36 +188,23 @@ $(function() {
 				</tr>
 			</thead>
 			<tbody>
+				<%
+					for (int i = 0; i < productList.size(); i++) {
+						Products product = productList.get(i);
+				%>
 				<tr>
-					<td>iPhone</td>
-					<td>Electronics</td>
-					<td>Smartphones</td>
-					<td>Karan</td>
-					<td>Apple Inc.</td>
-					<td>8 Plus</td>
+					<td><%=product.getProduct_Name()%></td>
+					<td><%=product.getSub_Category_Name()%></td>
+					<td><%=product.getCategory_name()%></td>
+					<td><%=product.getUser_Name()%></td>
+					<td><%=product.getBrand()%></td>
+					<td><%=product.getModel()%></td>
 					<td><button type="button" class="btn btn-primary">Approve</button></td>
 					<td><button type="button" class="btn btn-danger">Disapprove</button></td>
 				</tr>
-				<tr>
-					<td>Inspiron</td>
-					<td>Laptops</td>
-					<td>Smartphones</td>
-					<td>Druv</td>
-					<td>Dell</td>
-					<td>5000</td>
-					<td><button type="button" class="btn btn-primary">Approve</button></td>
-					<td><button type="button" class="btn btn-danger">Disapprove</button></td>
-				</tr>
-				<tr>
-					<td>Civic</td>
-					<td>Sedan</td>
-					<td>Automobile</td>
-					<td>Kingsley</td>
-					<td>Honda</td>
-					<td>Type R</td>
-					<td><button type="button" class="btn btn-primary">Approve</button></td>
-					<td><button type="button" class="btn btn-danger">Disapprove</button></td>
-				</tr>
+				<%
+					}
+				%>
 			</tbody>
 		</table>
 	</div>

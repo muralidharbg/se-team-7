@@ -1,137 +1,186 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
 <html>
 <head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-		<!-- Website CSS style -->
-		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+<script>
 
-		<!-- Website Font style -->
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-		
-		<!-- Google Fonts -->
-		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
-		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-		<title>Login</title>
-		<style>
+var __slice = [].slice;
 
-body, html{
-     height: 100%;
- 	background-repeat: no-repeat;
- 	background-color: #d3d3d3;
- 	font-family: 'Oxygen', sans-serif;
-}
+(function($, window) {
+  var Starrr;
 
-.main{
- 	margin-top: 70px;
-}
+  Starrr = (function() {
+    Starrr.prototype.defaults = {
+      rating: void 0,
+      numStars: 5,
+      change: function(e, value) {}
+    };
 
-h1.title { 
-	font-size: 50px;
-	font-family: 'Passion One', cursive; 
-	font-weight: 400; 
-}
+    function Starrr($el, options) {
+      var i, _, _ref,
+        _this = this;
 
-hr{
-	width: 10%;
-	color: #fff;
-}
+      this.options = $.extend({}, this.defaults, options);
+      this.$el = $el;
+      _ref = this.defaults;
+      for (i in _ref) {
+        _ = _ref[i];
+        if (this.$el.data(i) != null) {
+          this.options[i] = this.$el.data(i);
+        }
+      }
+      this.createStars();
+      this.syncRating();
+      this.$el.on('mouseover.starrr', 'span', function(e) {
+        return _this.syncRating(_this.$el.find('span').index(e.currentTarget) + 1);
+      });
+      this.$el.on('mouseout.starrr', function() {
+        return _this.syncRating();
+      });
+      this.$el.on('click.starrr', 'span', function(e) {
+        return _this.setRating(_this.$el.find('span').index(e.currentTarget) + 1);
+      });
+      this.$el.on('starrr:change', this.options.change);
+    }
 
-.form-group{
-	margin-bottom: 15px;
-}
+    Starrr.prototype.createStars = function() {
+      var _i, _ref, _results;
 
-label{
-	margin-bottom: 15px;
-}
+      _results = [];
+      for (_i = 1, _ref = this.options.numStars; 1 <= _ref ? _i <= _ref : _i >= _ref; 1 <= _ref ? _i++ : _i--) {
+        _results.push(this.$el.append("<span class='glyphicon .glyphicon-star-empty'></span>"));
+      }
+      return _results;
+    };
 
-input,
-input::-webkit-input-placeholder {
-    font-size: 11px;
-    padding-top: 3px;
-}
+    Starrr.prototype.setRating = function(rating) {
+      if (this.options.rating === rating) {
+        rating = void 0;
+      }
+      this.options.rating = rating;
+      this.syncRating();
+      return this.$el.trigger('starrr:change', rating);
+    };
 
-.main-login{
- 	background-color: #fff;
-    /* shadows and rounded borders */
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    Starrr.prototype.syncRating = function(rating) {
+      var i, _i, _j, _ref;
 
-}
+      rating || (rating = this.options.rating);
+      if (rating) {
+        for (i = _i = 0, _ref = rating - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+          this.$el.find('span').eq(i).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        }
+      }
+      if (rating && rating < 5) {
+        for (i = _j = rating; rating <= 4 ? _j <= 4 : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
+          this.$el.find('span').eq(i).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+        }
+      }
+      if (!rating) {
+        return this.$el.find('span').removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+      }
+    };
 
-.main-center{
- 	margin-top: 30px;
- 	margin: 0 auto;
- 	max-width: 330px;
-    padding: 40px 40px;
+    return Starrr;
 
-}
+  })();
+  return $.fn.extend({
+    starrr: function() {
+      var args, option;
 
-.login-button{
-	margin-top: 5px;
-}
+      option = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+      return this.each(function() {
+        var data;
 
-.login-register{
-	font-size: 11px;
-	text-align: center;
-}
-		
-		</style>
-	</head>
-	<body>
-  	<nav class="navbar navbar-default" role="navigation" style="background-color: black; color: white">
-  
-  		<div class="navbar-header">
-    			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-      			<span class="sr-only">Toggle navigation</span>
-      			<span class="icon-bar"></span>
-      			<span class="icon-bar"></span>
-      			<span class="icon-bar"></span>
-    			</button>
-    			<a class="navbar-brand" href="index.html" style="color: white">YouReview</a>
-  		</div>
+        data = $(this).data('star-rating');
+        if (!data) {
+          $(this).data('star-rating', (data = new Starrr($(this), option)));
+        }
+        if (typeof option === 'string') {
+          return data[option].apply(data, args);
+        }
+      });
+    }
+  });
+})(window.jQuery, window);
 
-  
-	  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	    		<div class="col-sm-8 col-md-8">
-	        		<form class="navbar-form" role="search">
-	        			<div class="input-group col-sm-8 col-md-8">
-	            			<input type="text" class="form-control" placeholder="Search" name="q">
-	            			<div class="input-group-btn">
-	                			<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-	            			</div>
-	        			</div>
-	        		</form>
-	    		</div>
-	    		<ul class="nav navbar-nav navbar-right">
-	    			<li><a href="#" style="color: white">Home</a></li>
-	    			<li><a href="#" style="color: white">Categories</a></li>
-	      		<li><a href="Login.jsp" style="color: white"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
-	    		</ul>
-  		</div><!-- /.navbar-collapse -->
+$(function() {
+  return $(".starrr").starrr();
+});
+
+
+</script>
+
+</head>
+<body style="background-color: #d3d3d3;">
+	<nav class="navbar navbar-default" role="navigation"
+		style="background-color: black; color: white">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html" style="color: white">YouReview</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<div class="col-sm-8 col-md-8">
+				<form class="navbar-form" role="search">
+					<div class="input-group col-sm-8 col-md-8">
+						<input type="text" class="form-control" placeholder="Search"
+							name="q">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#" style="color: white">Home</a></li>
+				<li><a href="#" style="color: white">Categories</a></li>
+				<li><a href="Register.jsp" style="color: white"><span
+						class="glyphicon glyphicon-user"></span> My Account</a></li>
+
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
 	</nav>
-
+	<div class="container">
 	<h1> Hello, <%=session.getAttribute("userName") %></h1>
-	
-	<a href="AddProductServlet">
-		<button id="myButton" class="btn btn-primary btn-lg btn-block login-button" style="width: 250px;margin-left:0px;">AddProduct</button>
-	</a>
-	<a href="AddSubCategory.jsp">
-		<button id="myButton" class="btn btn-primary btn-lg btn-block login-button" style="width: 250px;margin-left:0px;">AddCategory</button>
-	</a>
-	<a href="ApproveProducts.jsp">
-		<button id="myButton" class="btn btn-primary btn-lg btn-block login-button" style="width: 250px;margin-left:0px;">Approve Products</button>
-	</a>
-
+		<a href="ProductsAdded.jsp">
+			<button type="button" class="btn btn-light btn-block col-lg-3"
+				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Products
+				Added By Me</button>
+		</a> <a href="AddProductServlet">
+			<button type="button" class="btn btn-light btn-block col-lg-3"
+				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Add
+				Product</button>
+		</a> <a href="AddSubCategory.jsp">
+			<button type="button" class="btn btn-light btn-block col-lg-3"
+				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Add
+				Subcategory</button>
+		</a> <a href="AccountDetails.jsp">
+			<button type="button" class="btn btn-light btn-block col-lg-3"
+				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Account Details</button>
+		</a> <a href="ApproveProduct">
+			<button type="button" class="btn btn-light btn-block col-lg-3"
+				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Approve Products</button>
+		</a>
+	</div>
 </body>
 </html>
