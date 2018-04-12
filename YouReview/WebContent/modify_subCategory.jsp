@@ -10,7 +10,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<script type= "text/javascript">
+	function fetchdata(){
+		
+	}
+</script>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -175,11 +179,11 @@ ResultSet cat_list = cs.getAllCategories();
 subcategoryService scs= new subcategoryService();
 ResultSet scat_list= scs.getAllsubCategories();
 %>
-<form action="modifySubCategoryServlet" method= "post">
+<form action="modifyscatServlet" method= "post">
 <table border = "1" align = "center">
 <tr><td>Select a category</td>
 <td>
-<select id = "selected_scategory" name = "selected_scategory">
+<select id = "selected_category" name = "selected_category">
 <%
 while(cat_list.next()){  
 	String category = cat_list.getString("Category_Name");
@@ -210,7 +214,27 @@ while(scat_list.next()){
 </td>
 </tr>
 
-<tr><td colspan= 2 align = "center"><input type= "submit" value= "submit"></td></tr>
+<tr><td colspan= 2 align = "center"><input type= "submit" value= "fetch data"></td></tr>
+<%
+String category=(String)request.getAttribute("category");
+String sub_category= (String)request.getAttribute("sub_category");
+String q1= (String)request.getAttribute("q1");
+String q2=(String)request.getAttribute("q2");
+String q3 = (String)request.getAttribute("q3");
+String q4=(String)request.getAttribute("q4");
+String q5=(String)request.getAttribute("q5");
+
+%>
+
+<tr><td>Category</td><td><input type = "text" name = "category" readonly= "readonly" value="<%= category %>"></td></tr>
+<tr><td>Sub Category</td><td><input type = "text" name = "sub_category"value="<%= sub_category %>"></td></tr>
+<tr><td>Question 1</td><td><input type = "text" name = "q1" value="<%= q1 %>"></td></tr>
+<tr><td>Question 2</td><td><input type = "text" name = "q2" value="<%= q2 %>"></td></tr>
+<tr><td>Question 3</td><td><input type = "text" name = "q3" value="<%= q3 %>"></td></tr>
+<tr><td>Question 4</td><td><input type = "text" name = "q4" value="<%= q4 %>"></td></tr>
+<tr><td>Question 5</td><td><input type = "text" name = "q5" value="<%= q5 %>"></td></tr>
+
+<tr><td colspan= 2 align = "center"><input type= "button" value= "commit"></td></tr>
 
 </table>
 </form>
