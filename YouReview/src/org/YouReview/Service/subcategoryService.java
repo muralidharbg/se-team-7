@@ -47,7 +47,7 @@ public class subcategoryService {
 		LoginService ls= new LoginService();
 		Connection con= ls.getConnection();
 		PreparedStatement pst = null;
-		String sql= "update sub_categories set Sub_Category_Name= ?, q1=?, q2=?, q3=?, q4=?, q5=? where Sub_Category_Name = ?";
+		String sql= "update sub_categories set Sub_Category_Name= ?, Question1=?, Question2=?, Question3=?, Question4=?, Question5=? where Sub_Category_Name = ?";
 		
 		//UPDATE `youreview_db`.`sub_categories` SET `Question1`='sample1' WHERE `Sub_Category_Name`='Star Wars: The Last Jedi';
 
