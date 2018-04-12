@@ -1,14 +1,17 @@
-<!------ Include the above in your HEAD tag ---------->
-
+<%@page import="java.util.ArrayList"%>
+<%@page import="org.YouReview.dto.Products"%>
+<%
+	ArrayList<Products> productList = (ArrayList<Products>) request.getAttribute("productList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <script>
 
@@ -118,7 +121,15 @@ $(function() {
 
 
 </script>
+<style type="text/css">
+.block2-img>img {
+	width: 50%
+}
 
+.thumbnail>img {
+	width: 100%
+}
+</style>
 </head>
 <body style="background-color: #d3d3d3;">
 	<nav class="navbar navbar-default" role="navigation"
@@ -161,26 +172,38 @@ $(function() {
 		<!-- /.navbar-collapse -->
 	</nav>
 	<div class="container">
-	<h1> Hello, <%=session.getAttribute("userName") %></h1>
-		<a href="ProductsAdded">
-			<button type="button" class="btn btn-light btn-block col-lg-3"
-				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Products
-				Added By Me</button>
-		</a> <a href="AddProductServlet">
-			<button type="button" class="btn btn-light btn-block col-lg-3"
-				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Add
-				Product</button>
-		</a> <a href="AddSubCategory.jsp">
-			<button type="button" class="btn btn-light btn-block col-lg-3"
-				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Add
-				Subcategory</button>
-		</a> <a href="AccountDetails.jsp">
-			<button type="button" class="btn btn-light btn-block col-lg-3"
-				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Account Details</button>
-		</a> <a href="ApproveProduct">
-			<button type="button" class="btn btn-light btn-block col-lg-3"
-				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Approve Products</button>
-		</a>
+		<div class="row">
+			<%
+				for (int i = 0; i < productList.size(); i++) {
+					Products product = productList.get(i);
+			%>
+
+			<div class="col-sm-3 col-md-3">
+				<div class="thumbnail">
+					<a
+						href="ProductDetails?Product_Name=<%=product.getProduct_Name()%>">
+						<img src="images/item-02.jpg" alt="...">
+					</a>
+					<div class="caption">
+						<h3><%=product.getProduct_Name()%>
+							<%=product.getModel()%></h3>
+						<p>
+							by
+							<%=product.getBrand()%></p>
+						<p><%=product.getCategory_name()%>
+							>
+							<%=product.getSub_Category_Name()%></p>
+						<p>
+							Added by:
+							<%=product.getUser_Name()%></p>
+					</div>
+				</div>
+			</div>
+
+			<%
+				}
+			%>
+		</div>
 	</div>
 </body>
 </html>
