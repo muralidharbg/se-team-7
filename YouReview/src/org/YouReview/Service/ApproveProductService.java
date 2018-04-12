@@ -10,26 +10,8 @@ import java.util.HashMap;
 
 import org.YouReview.dto.Products;
 
-public class ApproveProductService {
+public class ApproveProductService extends YourReviewService {
 	HashMap<String, String> users = new HashMap<String, String>();
-
-	private Connection getConnection() throws Exception {
-		Connection conn = null;
-		String url = "jdbc:mysql://localhost:3306/YouReview_DB?useSSL=false";
-		String driver = "com.mysql.jdbc.Driver";
-		try {
-			Class.forName(driver).newInstance();
-			conn = DriverManager.getConnection(url, "root", "root");
-		} catch (SQLException sqle) {
-			System.out.println("SQLException: Unable to open connection to db: " + sqle.getMessage());
-
-			throw sqle;
-		} catch (Exception e) {
-			System.out.println("Exception: Unable to open connection to db: " + e.getMessage());
-			throw e;
-		}
-		return conn;
-	}
 
 	public ArrayList<Products> getApprovalPendingProducts() throws Exception {
 		Connection conn = null;
