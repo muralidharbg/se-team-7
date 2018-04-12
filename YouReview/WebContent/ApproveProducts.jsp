@@ -9,10 +9,9 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
 <script>
 
 var __slice = [].slice;
@@ -172,6 +171,12 @@ td {
 		<!-- /.navbar-collapse -->
 	</nav>
 	<div class="container">
+		<div class="alert hide" role="alert">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
 		<button type="button" class="btn btn-primary" style="margin: 10px 0;">Add
 			Products</button>
 		<table>
@@ -184,7 +189,7 @@ td {
 					<th>Brand</th>
 					<th>Model</th>
 					<th>Approve</th>
-					<th>Disapprove</th>
+					<!-- <th>Disapprove</th>  -->
 				</tr>
 			</thead>
 			<tbody>
@@ -200,7 +205,7 @@ td {
 					<td><%=product.getBrand()%></td>
 					<td><%=product.getModel()%></td>
 					<td><button type="button" class="btn btn-primary">Approve</button></td>
-					<td><button type="button" class="btn btn-danger">Disapprove</button></td>
+					<!-- <td><button type="button" class="btn btn-danger">Disapprove</button></td>  -->
 				</tr>
 				<%
 					}
@@ -208,5 +213,44 @@ td {
 			</tbody>
 		</table>
 	</div>
+	<script>
+		$(document).ready(function() {			
+			$("button.btn-primary").click(function() {
+				var product_listing_dom = $(this).parent().parent();
+				var product_name_dom = $(this).parent().parent().children()[0];
+				var product_name = $(product_name_dom).text();
+				$.post("ApproveProduct",{name: product_name, status: 'approve'},function(response) {
+					if (response != "") {
+						if(response.updateStatus == true){
+							$(".alert").removeClass("hide");
+							$(".alert").addClass("alert-success");
+							$(".alert").addClass("alert-dismissible");
+							$(".alert").append("Product approved!");
+							setTimeout(function() {
+								$(".alert").alert('close');
+								$(product_listing_dom).remove();
+							}, 2000);
+						} else{
+							$(".alert").removeClass("hide");
+							$(".alert").addClass("alert-warning");
+							$(".alert").addClass("alert-dismissible");
+							$(".alert").append("Something went wrong!");
+							setTimeout(function() {
+								$(".alert").alert('close');
+							}, 2000);
+						}
+					} else{
+						$(".alert").removeClass("hide");
+						$(".alert").addClass("alert-warning");
+						$(".alert").addClass("alert-dismissible");
+						$(".alert").append("Something went wrong!");
+						setTimeout(function() {
+							$(".alert").alert('close');
+						}, 2000);
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>
