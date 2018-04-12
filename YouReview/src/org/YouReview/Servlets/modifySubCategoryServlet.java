@@ -19,7 +19,7 @@ import org.YouReview.dto.subCategory;
 @WebServlet("/modifySubCategoryServlet")
 public class modifySubCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+       //somechange
     /**
      * @see HttpServlet#HttpServlet()
      */
