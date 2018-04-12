@@ -177,15 +177,19 @@ $(function() {
 				for (int i = 0; i < productList.size(); i++) {
 					Products product = productList.get(i);
 			%>
+
 			<div class="col-sm-3 col-md-3">
 				<div class="thumbnail">
-					<img src="images/item-02.jpg" alt="...">
+					<a
+						href="ProductDetails?Product_Name=<%=product.getProduct_Name()%>">
+						<img src="images/item-02.jpg" alt="...">
+					</a>
 					<div class="caption">
 						<h3><%=product.getProduct_Name()%>
 							<%=product.getModel()%></h3>
 						<p>
 							by
-							<%=product.getProduct_Name()%></p>
+							<%=product.getBrand()%></p>
 						<p><%=product.getCategory_name()%>
 							>
 							<%=product.getSub_Category_Name()%></p>
@@ -195,6 +199,7 @@ $(function() {
 					</div>
 				</div>
 			</div>
+
 			<%
 				}
 			%>
