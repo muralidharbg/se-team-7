@@ -235,8 +235,12 @@ String q5=(String)request.getAttribute("q5");
 <tr><td>Question 5</td><td><input type = "text" name = "q5" value="<%= q5 %>"></td></tr>
 
 </table>
-<input type= "submit" name= "commit" value= "commit">
-
+<table align = "center">
+<tr>
+<td><input type= "submit" name= "commit" value= "commit">
+</td>
+</tr>
+</table>
 </form>
 </body>
 </html>

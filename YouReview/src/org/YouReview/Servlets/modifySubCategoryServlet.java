@@ -44,7 +44,7 @@ public class modifySubCategoryServlet extends HttpServlet {
 		String category, scategory;
 		
 		category= request.getParameter("selected_category");
-		
+		//changes made
 		scategory= request.getParameter("selected_scategory");
 		System.out.println(category+ ", "+ scategory);
 		subcategoryService scs= new subcategoryService();
