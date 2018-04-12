@@ -179,7 +179,7 @@ ResultSet cat_list = cs.getAllCategories();
 subcategoryService scs= new subcategoryService();
 ResultSet scat_list= scs.getAllsubCategories();
 %>
-<form action="modifyscatServlet" method= "post">
+<form action="${pageContext.request.contextPath}/modifyscatServlet" method= "post">
 <table border = "1" align = "center">
 <tr><td>Select a category</td>
 <td>
@@ -214,7 +214,7 @@ while(scat_list.next()){
 </td>
 </tr>
 
-<tr><td colspan= 2 align = "center"><input type= "submit" value= "fetch data"></td></tr>
+<tr><td colspan= 2 align = "center"><input type= "submit" name = "fetch_data"value= "fetch_data"></td></tr>
 <%
 String category=(String)request.getAttribute("category");
 String sub_category= (String)request.getAttribute("sub_category");
@@ -234,9 +234,9 @@ String q5=(String)request.getAttribute("q5");
 <tr><td>Question 4</td><td><input type = "text" name = "q4" value="<%= q4 %>"></td></tr>
 <tr><td>Question 5</td><td><input type = "text" name = "q5" value="<%= q5 %>"></td></tr>
 
-<tr><td colspan= 2 align = "center"><input type= "button" value= "commit"></td></tr>
-
 </table>
+<input type= "submit" name= "commit" value= "commit">
+
 </form>
 </body>
 </html>

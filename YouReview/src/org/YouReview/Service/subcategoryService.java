@@ -39,17 +39,26 @@ public class subcategoryService {
 		return rs;
 				
 	}
-	public String updatesubCategory(String oldCategory, String NewCategory)
+	public String updatesubCategory(subCategory sub_cat_data, String sub_cat)
 	{
+		
 		String ret= "no";
 		try {
 		LoginService ls= new LoginService();
 		Connection con= ls.getConnection();
 		PreparedStatement pst = null;
-		String sql= "update sub_categories set Sub_Category_Name= ? where Sub_Category_Name = ?";
+		String sql= "update sub_categories set Sub_Category_Name= ?, q1=?, q2=?, q3=?, q4=?, q5=? where Sub_Category_Name = ?";
+		
+		//UPDATE `youreview_db`.`sub_categories` SET `Question1`='sample1' WHERE `Sub_Category_Name`='Star Wars: The Last Jedi';
+
 		pst= con.prepareStatement(sql);
-		pst.setString(1, NewCategory);
-		pst.setString(2, oldCategory);
+		pst.setString(1, sub_cat_data.getSub_category_name());
+		pst.setString(2, sub_cat_data.getQ1());
+		pst.setString(3, sub_cat_data.getQ2());
+		pst.setString(4, sub_cat_data.getQ3());
+		pst.setString(5, sub_cat_data.getQ4());
+		pst.setString(6, sub_cat_data.getQ5());
+		pst.setString(7, sub_cat);
 		pst.executeUpdate();
 		ret= "YES";
 		
@@ -89,6 +98,7 @@ public class subcategoryService {
 			//	cat.setCategory(rs.getString("Category_Name"));
 			//	cat_list.add(cat);
 			//}
+			while(rs.next()) {
 			sc.setCategory_name(rs.getString("Category_Name"));
 			sc.setSub_category_name(rs.getString("Sub_Category_Name"));
 			sc.setQ1(rs.getString("Question1"));
@@ -98,7 +108,7 @@ public class subcategoryService {
 			sc.setQ5(rs.getString("Question5"));
 			
 			System.out.println("q1 in subcatservice >>>  "+sc.getQ1());
-			
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
