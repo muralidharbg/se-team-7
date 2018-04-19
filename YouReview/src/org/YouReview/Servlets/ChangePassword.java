@@ -43,7 +43,8 @@ public class ChangePassword extends HttpServlet {
 		oldpassWord = request.getParameter("oldpassWord");
 		newpassWord = request.getParameter("newpassWord");
 	    conpassWord = request.getParameter("conpassWord");
-		userName = request.getParameter("userName");
+	    HttpSession newSession = request.getSession(false);
+		userName = (String) newSession.getAttribute("userName");
 	   
 	    
 	    //LoginService ls = new LoginService();
@@ -60,7 +61,7 @@ public class ChangePassword extends HttpServlet {
 			else
 			{
 				RequestDispatcher rd = request.getRequestDispatcher("ChangePassword.jsp");
-				   printer.println("<font color=red>Please fill all the fields or make sure the credentials match</font>");
+				   printer.println("<font color=red>Please fill all the fields</font>");
 				   rd.include(request, response);
 				   
 			}
@@ -75,14 +76,10 @@ public class ChangePassword extends HttpServlet {
 	    
 	    if(result)
 		{
-	    	HttpSession session = request.getSession();
-	        session.invalidate();
-			response.sendRedirect("Login.jsp");
+			response.sendRedirect("MyAccount.jsp");
 		}
 		else
 		{
-			
-			
 			RequestDispatcher rd = request.getRequestDispatcher("ChangePassword.jsp");
 			rd.include(request, response);
 			printer.close();

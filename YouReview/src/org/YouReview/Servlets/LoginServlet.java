@@ -28,12 +28,14 @@ public class LoginServlet extends HttpServlet {
 		userName = request.getParameter("userName");
 		passWord = request.getParameter("passWord");
 		
+		User user = null;
+		
 		LoginService loginService = new LoginService();
 		try
 		{
 			if(!userName.isEmpty() || !passWord.isEmpty())
 			{
-				result = loginService.authenticate(userName, passWord);
+				user = loginService.authenticate(userName, passWord);
 			}
 		}
 		catch(Exception e)
@@ -41,12 +43,14 @@ public class LoginServlet extends HttpServlet {
 			System.out.println("login failed");
 		}		
 		
-		if (result)
+		if (user != null)
 		{
-			User user = loginService.getuserDetails(userName);
+			//User user = loginService.getuserDetails(userName);
 			request.setAttribute("user", user);
 			HttpSession newSession = request.getSession(true);
 			newSession.setAttribute("userName", userName);
+			newSession.setAttribute("userRole", user.getUser_Role());
+			System.out.println("user role is :"+newSession.getAttribute("userRole"));
 			RequestDispatcher dispatcher = request.getRequestDispatcher("MyAccount.jsp");			
 			dispatcher.forward(request, response);			
 			return;

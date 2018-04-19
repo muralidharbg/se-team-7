@@ -1,62 +1,108 @@
 package org.YouReview.dto;
 
-public class subCategory {
-	private String sub_category_name, category_name, q1, q2, q3, q4, q5;
+public class SubCategory {
+	
+	
+	public String SubCategoryName;
+	public String CategoryName;
+	public String Question1;
+	public String Question2;
+	public String Question3;
+	public String Question4;
+	public String Question5;
 
-	public String getQ4() {
-		return q4;
+	
+	public String getSubCategoryName() {
+		return SubCategoryName;
 	}
 
-	public void setQ4(String q4) {
-		this.q4 = q4;
+	
+	public void setSubCategoryName(String subCategoryName) {
+		this.SubCategoryName = subCategoryName;
 	}
 
-	public String getQ2() {
-		return q2;
+
+
+	public String getCategoryName() {
+		return CategoryName;
 	}
 
-	public void setQ2(String q2) {
-		this.q2 = q2;
+
+
+	public void setCategoryName(String categoryName) {
+		this.CategoryName = categoryName;
 	}
 
-	public String getQ3() {
-		return q3;
+
+
+	public String getQuestion1() {
+		return Question1;
 	}
 
-	public void setQ3(String q3) {
-		this.q3 = q3;
+
+
+	public void setQuestion1(String question1) {
+		this.Question1 = question1;
 	}
 
-	public String getSub_category_name() {
-		return sub_category_name;
+
+
+	public String getQuestion2() {
+		return Question2;
 	}
 
-	public void setSub_category_name(String sub_category_name) {
-		this.sub_category_name = sub_category_name;
+
+
+	public void setQuestion2(String question2) {
+		this.Question2 = question2;
 	}
 
-	public String getQ5() {
-		return q5;
+
+
+	public String getQuestion3() {
+		return Question3;
 	}
 
-	public void setQ5(String q5) {
-		this.q5 = q5;
+
+
+	public void setQuestion3(String question3) {
+		this.Question3 = question3;
 	}
 
-	public String getCategory_name() {
-		return category_name;
+
+
+	public String getQuestion4() {
+		return Question4;
 	}
 
-	public void setCategory_name(String category_name) {
-		this.category_name = category_name;
+
+
+	public void setQuestion4(String question4) {
+		this.Question4 = question4;
 	}
 
-	public String getQ1() {
-		return q1;
+
+
+	public String getQuestion5() {
+		return Question5;
 	}
 
-	public void setQ1(String q1) {
-		this.q1 = q1;
+
+
+	public void setQuestion5(String question5) {
+		this.Question5 = question5;
 	}
+
+
+
+	public String getSubCategoryName(String SubCategoryName) {
+		return SubCategoryName;
+	}
+	
+	@Override
+	public String toString() {
+		return "SubCategory [category_name=" + CategoryName +  "\nSubCategoryName" + SubCategoryName + "\nQuestion_1" + Question1 + "\nQuestion_2" + Question2 + "\nQuestion_3" + Question3 + "\nQuestion_4" + Question4 +"\nQuestion_5" + Question5 +  "]";
+	}
+
 	
 }

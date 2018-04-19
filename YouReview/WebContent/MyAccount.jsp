@@ -121,6 +121,14 @@ $(function() {
 
 </head>
 <body style="background-color: #d3d3d3;">
+<%
+String userRole = (String)session.getAttribute("userRole"); 
+if(userRole.equals("Admin"))
+{
+	response.sendRedirect("MyAccount_admin.jsp");
+}
+%>
+
 	<nav class="navbar navbar-default" role="navigation"
 		style="background-color: black; color: white">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -170,16 +178,18 @@ $(function() {
 			<button type="button" class="btn btn-light btn-block col-lg-3"
 				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Add
 				Product</button>
-		</a> <a href="AddSubCategory.jsp">
-			<button type="button" class="btn btn-light btn-block col-lg-3"
-				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Add
-				Subcategory</button>
-		</a> <a href="AccountDetails.jsp">
+		</a> 
+		 <a href="AccountDetails.jsp">
 			<button type="button" class="btn btn-light btn-block col-lg-3"
 				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Account Details</button>
-		</a> <a href="ApproveProduct">
+		</a><a href="AllProductsServlet">
 			<button type="button" class="btn btn-light btn-block col-lg-3"
-				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Approve Products</button>
+				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">All Products to Write Review</button>
+		</a>
+		
+		  <a href="ChangePassword.jsp">
+			<button type="button" class="btn btn-light btn-block col-lg-3"
+				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Change Password</button>
 		</a>
 	</div>
 </body>

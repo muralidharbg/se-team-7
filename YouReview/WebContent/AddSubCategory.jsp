@@ -238,8 +238,7 @@ input::-webkit-input-placeholder {
 									
 									<div class="form-group ">
 										<input type="submit" class="btn btn-primary btn-lg btn-block login-button"/>
-									</div>  		
-														
+									</div>  																
 				</div>
 				</form>	
 			</div>																

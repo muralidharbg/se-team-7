@@ -4,6 +4,7 @@ public class User {
 	
 	private String userName;
 	private String fullName;
+	private String User_Role;
 	
 	public String getUserName() {
 		return userName;
@@ -16,6 +17,12 @@ public class User {
 	}
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
+	}
+	public String getUser_Role() {
+		return User_Role;
+	}
+	public void setUser_Role(String user_Role) {
+		User_Role = user_Role;
 	}
 	
 }

@@ -5,22 +5,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpSession;
-
 import org.YouReview.dto.Products;
 
 import com.mysql.jdbc.Blob;
 
-public class ProductsAddedService extends YourReviewService {
-	public ArrayList<Products> getAllProducts(String User_Name) throws Exception {
+
+public class AllProductsServices extends YourReviewService {
+	public ArrayList<Products> getAllProducts() throws Exception {
 		Connection conn = null;
 
 		ArrayList<Products> productList = new ArrayList<Products>();
-		try {			
+		try {
 			conn = getConnection();
 			PreparedStatement pst = null;
 			pst = conn.prepareStatement(
-					"SELECT p.*, s.Category_Name FROM Products p, Sub_Categories s WHERE s.Sub_Category_Name = p.Sub_Category_Name and p.User_Name = '"+User_Name+"'");
+					"SELECT p.*, s.Category_Name FROM Products p, Sub_Categories s WHERE s.Sub_Category_Name = p.Sub_Category_Name and p.Approved = 1");
 			ResultSet rs = pst.executeQuery();
 			Blob image = null;
 			while (rs.next()) {
@@ -51,3 +50,4 @@ public class ProductsAddedService extends YourReviewService {
 
 	}
 }
+

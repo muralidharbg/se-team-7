@@ -26,7 +26,7 @@
 body, html{
      height: 100%;
  	background-repeat: no-repeat;
- 	background-color: #000000;
+ 	background-color: #d3d3d3;
  	font-family: 'Oxygen', sans-serif;
 }
 
@@ -92,27 +92,49 @@ input::-webkit-input-placeholder {
 		</style>
 	</head>
 	<body>
+	<nav class="navbar navbar-default" role="navigation" style="background-color: black; color: white">
+  
+  		<div class="navbar-header">
+    			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      			<span class="sr-only">Toggle navigation</span>
+      			<span class="icon-bar"></span>
+      			<span class="icon-bar"></span>
+      			<span class="icon-bar"></span>
+    			</button>
+    			<a class="navbar-brand" href="index.html" style="color: white">YouReview</a>
+  		</div>
+
+  
+	  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    		<div class="col-sm-8 col-md-8">
+	        		<form class="navbar-form" role="search">
+	        			<div class="input-group col-sm-8 col-md-8">
+	            			<input type="text" class="form-control" placeholder="Search" name="q">
+	            			<div class="input-group-btn">
+	                			<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+	            			</div>
+	        			</div>
+	        		</form>
+	    		</div>
+	    		<ul class="nav navbar-nav navbar-right">
+	    			<li><a href="#" style="color: white">Home</a></li>
+	    			<li><a href="#" style="color: white">Categories</a></li>
+	      		<li><a href="Register.jsp" style="color: white"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+	    		</ul>
+  		</div><!-- /.navbar-collapse -->
+	</nav>
+	
 		<div class="container">
 			<div class="row main">
 				<div class="panel-heading">
 	               <div class="panel-title text-center">
-	               		<h1 class="title">YouReview</h1>
+	               		<h1 class="title">Change PassWord</h1>
 	               		<hr />
 	               	</div>
 	            </div> 
 				<div class="main-login main-center">
 					<form class="form-horizontal" method="post" action="ChangePassword">
-						
-						<div class="form-group">
-							<label for="username" class="cols-sm-2 control-label">Username</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="userName" id="userName"  placeholder="Enter your Username"/>
-								</div>
-							</div>
-						</div>
-
+												
 						<div class="form-group">
 							<label for="oldpassWord" class="cols-sm-2 control-label">Current Password</label>
 							<div class="cols-sm-10">
@@ -149,7 +171,7 @@ input::-webkit-input-placeholder {
 							<input type="submit" class="btn btn-primary btn-lg btn-block login-button"/>
 						</div>
 				        <div class="login-register" >
-				         	<a href="UserA.jsp">Home</a>
+				         	<a href="MyAccount.jsp">Home</a>
 				         </div>
 					</form>
 				</div>

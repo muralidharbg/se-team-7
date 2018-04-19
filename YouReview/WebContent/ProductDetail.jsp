@@ -1,8 +1,5 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="org.YouReview.dto.Products"%>
-<%
-	Products product = (Products) request.getAttribute("productDetails");
-%>
+<!------ Include the above in your HEAD tag ---------->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -160,14 +157,19 @@ $(function() {
                 </div>
                 <div class="col-xs-5" style="border:0px solid gray">
                     <!-- Datos del vendedor y titulo del producto -->
-                    <h3><%=product.getBrand()%> <%=product.getProduct_Name()%> <%=product.getModel()%></h3>    
-                    <h5 style="color:#337ab7">Product By <a href="#"><%=product.getBrand()%></a> · <small style="color:#337ab7">(5054 Reviews)</small></h5>
+                    <h3>Apple iPhone X, 5.8", 256 GB - Space Gray MQA82LL/A</h3>    
+                    <h5 style="color:#337ab7">Product By <a href="#">Apple</a> · <small style="color:#337ab7">(5054 Reviews)</small></h5>
         
                     <!-- Precios -->
                     <h6 class="title-price"><small>Price</small></h6>
-                    
+                    <h3 style="margin-top:0px;">U$S 999</h3>
+        
                     <!-- Detalles especificos del producto -->
                     <div class="section" style="padding-bottom:5px;">
+                        <h6 class="title-attr"><small>CAPACITY</small></h6>                    
+                        <div>
+                            <div class="attr2">64 GB   256 GB</div>
+                        </div>
                         <table style="width:100%">
 							  <tr>
 							    	<th><div class="attr2">Battery</div>
@@ -198,13 +200,21 @@ $(function() {
                 </div>                              
         
                 <div class="col-xs-9">
+                    <ul class="menu-items">
+                        <li class="active">Detalle del producto</li>
+                        <li>Garantía</li>
+                        <li>Vendedor</li>
+                        <li>Envío</li>
+                    </ul>
                     <div style="width:100%;border-top:1px solid silver">
                         <p style="padding:15px;">
                             <small>
-                            <%=product.getDescription()%>
+                            Stay connected either on the phone or the Web with the Galaxy S4 I337 from Samsung. With 16 GB of memory and a 4G connection, this phone stores precious photos and video and lets you upload them to a cloud or social network at blinding-fast speed. With a 17-hour operating life from one charge, this phone allows you keep in touch even on the go. 
+        
+                            With its built-in photo editor, the Galaxy S4 allows you to edit photos with the touch of a finger, eliminating extraneous background items. Usable with most carriers, this smartphone is the perfect companion for work or entertainment.
                             </small>
                         </p>
-                        <!-- <small>
+                        <small>
                             <ul>
                                 <li>Super AMOLED capacitive touchscreen display with 16M colors</li>
                                 <li>Available on GSM, AT T, T-Mobile and other carriers</li>
@@ -222,7 +232,7 @@ $(function() {
                                 <li>Package includes phone, charger, battery and user manual</li>
                                 <li>Phone is 5.38 inches high x 2.75 inches wide x 0.13 inches deep and weighs a mere 4.59 oz </li>
                             </ul>  
-                        </small>  -->
+                        </small>
                     </div>
                     <div class="row">
 			<div class="col-sm-7">

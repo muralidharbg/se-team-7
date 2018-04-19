@@ -10,6 +10,8 @@ import java.util.HashMap;
 
 import org.YouReview.dto.Products;
 
+import com.mysql.jdbc.Blob;
+
 public class ApproveProductService extends YourReviewService {
 	HashMap<String, String> users = new HashMap<String, String>();
 
@@ -23,7 +25,8 @@ public class ApproveProductService extends YourReviewService {
 			pst = conn.prepareStatement(
 					"SELECT p.*, s.Category_Name FROM Products p, Sub_Categories s WHERE s.Sub_Category_Name = p.Sub_Category_Name AND p.Approved = 0");
 			ResultSet rs = pst.executeQuery();
-
+			
+			
 			while (rs.next()) {
 				Products product = new Products();
 				product.setProduct_Name(rs.getString("Product_Name"));
@@ -32,6 +35,8 @@ public class ApproveProductService extends YourReviewService {
 				product.setBrand(rs.getString("Brand"));
 				product.setModel(rs.getString("Model"));
 				product.setCategory_name(rs.getString("Category_Name"));
+				
+				System.out.println(rs.getString("Category_Name"));
 				productList.add(product);
 			}
 		} catch (Exception e) {

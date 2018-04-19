@@ -39,12 +39,13 @@ public class LoginService {
 	}
 	
 	
-	public boolean authenticate(String userName,String passWord) throws Exception
+	public User authenticate(String userName,String passWord) throws Exception
 	{
 		Connection conn = null;
 		boolean status = false;
-		
+		User user = new User();
 		try {
+			
 			conn = getConnection();
 			PreparedStatement pst = null;
 			pst = conn.prepareStatement("select * from Users where User_UserName=? and User_PassWord=?");
@@ -53,6 +54,9 @@ public class LoginService {
 			ResultSet rs = pst.executeQuery();
 			if(rs.next())
 			{
+				user.setFullName(rs.getString("User_FullName"));
+				user.setUserName(rs.getString("User_UserName"));
+				user.setUser_Role(rs.getString("User_Role"));
 				status = true;
 			}
 		}
@@ -63,8 +67,8 @@ public class LoginService {
 		  } finally {
 		   	conn.close();
 		  }
-		
-		return status;
+		System.out.println(user);
+		return user;
 		
 	}
 	

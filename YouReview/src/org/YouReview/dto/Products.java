@@ -1,5 +1,7 @@
 package org.YouReview.dto;
 
+import com.mysql.jdbc.Blob;
+
 public class Products {
 	private String Product_Name;
 	private String Sub_Category_Name;
@@ -8,6 +10,7 @@ public class Products {
 	private String Model;
 	private String Description;
 	private String Category_name;
+	private Blob Image;
 	
 	public String getProduct_Name() {
 		return Product_Name;
@@ -50,6 +53,12 @@ public class Products {
 	}
 	public void setCategory_name(String category_name) {
 		Category_name = category_name;
+	}
+	public Blob getImage() {
+		return Image;
+	}
+	public void setImage(Blob image) {
+		Image = image;
 	}
 	
 	
