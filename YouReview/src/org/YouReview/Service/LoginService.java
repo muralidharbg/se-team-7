@@ -10,32 +10,12 @@ import java.util.HashMap;
 
 import org.YouReview.dto.User;
 
-public class LoginService {
+public class LoginService extends YourReviewService {
 	HashMap<String,String> users = new HashMap<String,String>();
 	
 	public LoginService(){
 		users.put("karan", "karan Upadhyay");
 		users.put("jinesh", "jinesh Shah");
-	}
-	
-	private Connection getConnection() throws Exception{
-		Connection conn = null;
-		String url = "jdbc:mysql://localhost:3306/YouReview_DB?useSSL=false";
-		String driver = "com.mysql.jdbc.Driver";
-		try {
-			Class.forName(driver).newInstance();
-			conn = DriverManager.getConnection(url,"root","12345678");
-		}
-		catch(SQLException sqle) {
-			System.out.println("SQLException: Unable to open connection to db: "+sqle.getMessage());
-		
-			throw sqle;
-		}
-		catch(Exception e) {
-		      System.out.println("Exception: Unable to open connection to db: "+e.getMessage());
-		      throw e;
-		   }
-		return conn;
 	}
 	
 	
