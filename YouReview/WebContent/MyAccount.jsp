@@ -3,14 +3,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">  -->
 
-<script>
+<!-- Website CSS style -->
+<!--  <link rel="stylesheet" type="text/css" href="assets/css/main.css">  -->
+
+<!-- Website Font style -->
+<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
+<!-- Google Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Passion+One'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Oxygen'
+	rel='stylesheet' type='text/css'>
+<link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="css/master.css" rel="stylesheet">
+</head>
+<body style="background-color: #d3d3d3;">
+	<%
+		String userRole = (String) session.getAttribute("userRole");
+		if (userRole.equals("Admin")) {
+			response.sendRedirect("MyAccount_admin.jsp");
+		}
+	%>
+
+	<jsp:include page="menu.jsp"></jsp:include>
+	<div class="container">
+		<h1>
+			Hello,
+			<%=session.getAttribute("userName")%></h1>
+		<a href="ProductsAdded">
+			<button type="button" class="btn btn-light btn-block col-lg-3"
+				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Products
+				Added By Me</button>
+		</a> <a href="AddProductServlet">
+			<button type="button" class="btn btn-light btn-block col-lg-3"
+				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Add
+				Product</button>
+		</a> <a href="AccountDetails.jsp">
+			<button type="button" class="btn btn-light btn-block col-lg-3"
+				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Account
+				Details</button>
+		</a><a href="AllProductsServlet">
+			<button type="button" class="btn btn-light btn-block col-lg-3"
+				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">All
+				Products to Write Review</button>
+		</a> <a href="ChangePassword.jsp">
+			<button type="button" class="btn btn-light btn-block col-lg-3"
+				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Change
+				Password</button>
+		</a>
+	</div>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script>
 
 var __slice = [].slice;
 
@@ -115,82 +162,6 @@ var __slice = [].slice;
 $(function() {
   return $(".starrr").starrr();
 });
-
-
 </script>
-
-</head>
-<body style="background-color: #d3d3d3;">
-<%
-String userRole = (String)session.getAttribute("userRole"); 
-if(userRole.equals("Admin"))
-{
-	response.sendRedirect("MyAccount_admin.jsp");
-}
-%>
-
-	<nav class="navbar navbar-default" role="navigation"
-		style="background-color: black; color: white">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="index.html" style="color: white">YouReview</a>
-		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<div class="col-sm-8 col-md-8">
-				<form class="navbar-form" role="search">
-					<div class="input-group col-sm-8 col-md-8">
-						<input type="text" class="form-control" placeholder="Search"
-							name="q">
-						<div class="input-group-btn">
-							<button class="btn btn-default" type="submit">
-								<i class="glyphicon glyphicon-search"></i>
-							</button>
-						</div>
-					</div>
-				</form>
-			</div>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#" style="color: white">Home</a></li>
-				<li><a href="#" style="color: white">Categories</a></li>
-				<li><a href="Register.jsp" style="color: white"><span
-						class="glyphicon glyphicon-user"></span> My Account</a></li>
-
-			</ul>
-		</div>
-		<!-- /.navbar-collapse -->
-	</nav>
-	<div class="container">
-	<h1> Hello, <%=session.getAttribute("userName") %></h1>
-		<a href="ProductsAdded">
-			<button type="button" class="btn btn-light btn-block col-lg-3"
-				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Products
-				Added By Me</button>
-		</a> <a href="AddProductServlet">
-			<button type="button" class="btn btn-light btn-block col-lg-3"
-				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Add
-				Product</button>
-		</a> 
-		 <a href="AccountDetails.jsp">
-			<button type="button" class="btn btn-light btn-block col-lg-3"
-				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Account Details</button>
-		</a><a href="AllProductsServlet">
-			<button type="button" class="btn btn-light btn-block col-lg-3"
-				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">All Products to Write Review</button>
-		</a>
-		
-		  <a href="ChangePassword.jsp">
-			<button type="button" class="btn btn-light btn-block col-lg-3"
-				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Change Password</button>
-		</a>
-	</div>
 </body>
 </html>
