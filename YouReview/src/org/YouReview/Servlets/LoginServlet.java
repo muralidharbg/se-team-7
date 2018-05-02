@@ -50,9 +50,8 @@ public class LoginServlet extends HttpServlet {
 			HttpSession newSession = request.getSession(true);
 			newSession.setAttribute("userName", userName);
 			newSession.setAttribute("userRole", user.getUser_Role());
-			System.out.println("user role is :"+newSession.getAttribute("userRole"));
-			RequestDispatcher dispatcher = request.getRequestDispatcher("MyAccount.jsp");			
-			dispatcher.forward(request, response);			
+			System.out.println("user role is :"+newSession.getAttribute("userRole"));			
+			response.sendRedirect("MyAccount.jsp");
 			return;
 		}
 		else

@@ -41,106 +41,114 @@
 				</div>
 			</div>
 			<div class="main-login main-center" style="max-width: 830px;">
-				<form class="form-horizontal" method="post"
-					enctype='multipart/form-data' action="AddSubCategoryServlet">
-
-					<div class="form-group">
-
-
-						<label for="category" class="cols-sm-2 control-label">Category
-							Name:</label> <select class="form-control" id="category" name="category">
-							<option>Select Category</option>
-							<%
-								try {
-									String Query = "select * from Category";
-
-									Connection conn = null;
-									String url = "jdbc:mysql://localhost:3306/YouReview_DB?useSSL=false";
-									String driver = "com.mysql.jdbc.Driver";
-									try {
-										Class.forName(driver).newInstance();
-										conn = DriverManager.getConnection(url, "root", "12345678");
-									} catch (SQLException sqle) {
-										System.out.println("SQLException: Unable to open connection to db: " + sqle.getMessage());
-
-										throw sqle;
-									}
-									PreparedStatement psmt = conn.prepareStatement(Query);
-
-									ResultSet rs = psmt.executeQuery();
-									while (rs.next()) {
-							%>
-
-							<option value="<%=rs.getString("Category_Name")%>"
-								<%if (request.getParameter("category") != null) {
-						if (request.getParameter("category").equals(rs.getString("Category_Name"))) {
-							out.print("selected");
-						}
-					}%>><%=rs.getString("Category_Name")%></option>
-							<%
-								}
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-							%>
-						</select> <label for="Sub_Category_Name" class="cols-sm-2 control-label">Sub-Category
-							Name</label>
-						<div class="cols-sm-5">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-book"
-									aria-hidden="true"></i></span> <input type="text" class="form-control"
-									name="Sub_Category_Name" id="Sub_Category_Name"
-									placeholder="Enter Sub-Category Name" />
-							</div>
-						</div>
-						<label for="Question1" class="cols-sm-2 control-label">Question1</label>
-						<div class="cols-sm-5">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-book"
-									aria-hidden="true"></i></span> <input type="text" class="form-control"
-									name="Question1" id="Question1" placeholder="Enter Question1" />
-							</div>
-						</div>
-						<label for="Question2" class="cols-sm-2 control-label">Question2</label>
-						<div class="cols-sm-5">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-book"
-									aria-hidden="true"></i></span> <input type="text" class="form-control"
-									name="Question2" id="Question2" placeholder="Enter Question2" />
-							</div>
-						</div>
-						<label for="Question3" class="cols-sm-2 control-label">Question3</label>
-						<div class="cols-sm-5">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-book"
-									aria-hidden="true"></i></span> <input type="text" class="form-control"
-									name="Question3" id="Question3" placeholder="Enter Question3" />
-							</div>
-						</div>
-						<label for="Question4" class="cols-sm-2 control-label">Question4</label>
-						<div class="cols-sm-5">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-book"
-									aria-hidden="true"></i></span> <input type="text" class="form-control"
-									name="Question4" id="Question4" placeholder="Enter Question4" />
-							</div>
-						</div>
-						<label for="Question5" class="cols-sm-2 control-label">Question5</label>
-						<div class="cols-sm-5">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-book"
-									aria-hidden="true"></i></span> <input type="text" class="form-control"
-									name="Question5" id="Question5" placeholder="Enter Question5" />
-							</div>
-						</div>
-
-
-						<div class="form-group ">
-							<input type="submit"
-								class="btn btn-primary btn-lg btn-block login-button" />
-						</div>
-					</div>
-				</form>
+				<form class="form-horizontal" method="post" action="AddSubCategoryServlet">
+						
+						<div class="form-group">
+							
+						
+									<label for="category" class="cols-sm-2 control-label">Category Name:</label>
+									
+									<select class="form-control" id="category" name="category">
+										<option>Select Category</option>
+										<%
+											try{
+												String Query="select * from Category";
+					
+												Connection conn = null;
+												String url = "jdbc:mysql://localhost:3306/YouReview_DB?useSSL=false";
+												String driver = "com.mysql.jdbc.Driver";
+												try {
+													Class.forName(driver).newInstance();
+													conn = DriverManager.getConnection(url,"root","12345678");
+												}
+												catch(SQLException sqle) {
+													System.out.println("SQLException: Unable to open connection to db: "+sqle.getMessage());
+												
+													throw sqle;
+												}
+												PreparedStatement psmt = conn.prepareStatement(Query);
+												
+												
+												ResultSet rs = psmt.executeQuery();
+												while(rs.next()){
+												
+												%>
+										
+										<option value="<%=rs.getString("Category_Name")%>"
+										<%
+											if(request.getParameter("category") != null)
+											{
+												if(request.getParameter("category").equals(rs.getString("Category_Name")))
+												{
+													out.print("selected");
+												}
+											}
+										%>
+																				
+										><%=rs.getString("Category_Name")%></option>
+										<%} 
+											}
+											catch(Exception e)
+											{
+												e.printStackTrace();
+											}%>					
+									</select>
+									
+													
+									<label for="Sub_Category_Name" class="cols-sm-2 control-label">Sub-Category Name</label>
+									<div class="cols-sm-5">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-book" aria-hidden="true"></i></span>
+											<input type="text" class="form-control" name="Sub_Category_Name" id="Sub_Category_Name"  placeholder="Enter Sub-Category Name"/>
+										</div>
+									</div>
+									<label for="Question1" class="cols-sm-2 control-label">Question1</label>
+									<div class="cols-sm-5">
+										<div class="input-group">
+											<span class="input-group-addon"><b>How is </b></span>
+											<input type="text" class="form-control" name="Question1" id="Question1"  placeholder="Enter Question Keyword"/>
+											<span class="input-group-addon"><b>?</b></span>											
+										</div>
+									</div>
+									<label for="Question2" class="cols-sm-2 control-label">Question2</label>
+									<div class="cols-sm-5">
+										<div class="input-group">
+											<span class="input-group-addon"><b>How is </b></span>
+											<input type="text" class="form-control" name="Question2" id="Question2"  placeholder="Enter Question Keyword"/>
+											<span class="input-group-addon"><b>?</b></span>
+										</div>		
+									</div>
+									<label for="Question3" class="cols-sm-2 control-label">Question3</label>
+									<div class="cols-sm-5">
+										<div class="input-group">
+											<span class="input-group-addon"><b>How is </b></span>
+											<input type="text" class="form-control" name="Question3" id="Question3"  placeholder="Enter Question Keyword"/>
+											<span class="input-group-addon"><b>?</b></span>
+										</div>
+									</div>
+									<label for="Question4" class="cols-sm-2 control-label">Question4</label>
+									<div class="cols-sm-5">
+										<div class="input-group">
+											<span class="input-group-addon"><b>How is </b></span>
+											<input type="text" class="form-control" name="Question4" id="Question4"  placeholder="Enter Question Keyword"/>
+											<span class="input-group-addon"><b>?</b></span>
+										</div>
+									</div>
+									<label for="Question5" class="cols-sm-2 control-label">Question5</label>
+									<div class="cols-sm-5">
+										<div class="input-group">
+											<span class="input-group-addon"><b>How is </b></span>
+											<input type="text" class="form-control" name="Question5" id="Question5"  placeholder="Enter Question Keyword"/>
+											<span class="input-group-addon"><b>?</b></span>
+										</div>
+									</div>
+									
+									
+									<div class="form-group ">
+										<input type="submit" class="btn btn-primary btn-lg btn-block login-button"/>
+									</div>  																
+				</div>
+				</form>	
 			</div>
 		</div>
 	</div>

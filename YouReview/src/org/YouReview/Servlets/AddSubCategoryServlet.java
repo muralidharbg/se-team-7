@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.YouReview.Service.AddProductService;
 //import org.YouReview.Service.AddProductService;
 import org.YouReview.dao.SubCategoryDAO;
 import org.YouReview.dto.SubCategory;
@@ -30,9 +31,7 @@ public class AddSubCategoryServlet extends HttpServlet {
     }
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		SubCategoryDAO scdao = new SubCategoryDAO();
-		
+				
 		String category = request.getParameter("category");
 		String Sub_Category_Name = request.getParameter("Sub_Category_Name");
 		String Question1 = request.getParameter("Question1");
@@ -40,20 +39,7 @@ public class AddSubCategoryServlet extends HttpServlet {
 		String Question3 = request.getParameter("Question3");
 		String Question4 = request.getParameter("Question4");
 		String Question5 = request.getParameter("Question5");
-		
-		
-		SubCategory subcategory = new SubCategory();
-		subcategory.setCategoryName(category);
-		subcategory.setSubCategoryName(Sub_Category_Name);
-		subcategory.setQuestion1(Question1);
-		subcategory.setQuestion2(Question2);
-		subcategory.setQuestion3(Question3);
-		subcategory.setQuestion4(Question4);
-		subcategory.setQuestion5(Question5);
-		
-		//System.out.println(subcategory);
-		
-		/*
+						
 		System.out.println("category"+category);
 		System.out.println("Sub_Category_Name"+Sub_Category_Name);
 		System.out.println("Question1"+Question1);
@@ -61,24 +47,18 @@ public class AddSubCategoryServlet extends HttpServlet {
 		System.out.println("Question3"+Question3);
 		System.out.println("Question4"+Question4);
 		System.out.println("Question5"+Question5);
-		*/
+			
+		AddProductService aps = new AddProductService();
 		
-		scdao.addSubCategory(subcategory);
-		
-		
-		
-		
-//		AddProductService aps = new AddProductService();
-//		
-//		try {
-//			aps.AddSubCategory(category,Sub_Category_Name,Question1,Question2,Question3,Question4,Question5);
-//		} catch (Exception e) {
-//			System.out.println("addexception");
-//			e.printStackTrace();
-//		}
+		try {
+			aps.AddSubCategory(category, Sub_Category_Name, Question1, Question2, Question3, Question4, Question5);
+		} catch (Exception e) {
+			System.out.println("Sex thai gayu");
+			e.printStackTrace();
+		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("MyAccount.jsp");
-		rd.forward(request, response);
+		rd.forward(request, response);		
 	}
 
 }
