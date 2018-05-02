@@ -20,6 +20,7 @@
 <link href='https://fonts.googleapis.com/css?family=Oxygen'
 	rel='stylesheet' type='text/css'>
 <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="css/jquery-ui.min.css" rel="stylesheet">
 <link href="css/master.css" rel="stylesheet">
 <script>
 	function change() {
@@ -179,7 +180,6 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
