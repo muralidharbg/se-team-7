@@ -16,7 +16,7 @@
 			<form class="navbar-form" role="search">
 				<div class="input-group col-sm-8 col-md-8">
 					<input type="text" class="form-control" placeholder="Search"
-						name="q">
+						name="q" id="search">
 					<div class="input-group-btn">
 						<button class="btn btn-default" type="submit">
 							<i class="glyphicon glyphicon-search"></i>
