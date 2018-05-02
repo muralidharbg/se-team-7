@@ -15,10 +15,10 @@ public class SearchService extends YourReviewService {
 		ArrayList<String> categoryList = getCategoryByQuery(Query);
 		
 		HashMap<String, ArrayList<String>> searchResults = new HashMap<>();
-		searchResults.put("Products", productList);
-		searchResults.put("Brands", brandList);
-		searchResults.put("Sub-Categories", subCategoryList);
-		searchResults.put("Categories", categoryList);
+		searchResults.put("Product Name", productList);
+		searchResults.put("Brand", brandList);
+		searchResults.put("Sub Category Name", subCategoryList);
+		searchResults.put("Category Name", categoryList);
 
 		return searchResults;
 

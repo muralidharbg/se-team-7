@@ -66,7 +66,10 @@
 							response(server_response);
 						});
 					},
-					minLength : 3
+					minLength : 3,
+					select: function( event, ui ) {
+						window.location.href = 'ProductList?' + ui.item.category.replace(" ","_") + '=' + ui.item.value;
+					}
 				});
 	});
 </script>
