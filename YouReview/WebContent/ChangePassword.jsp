@@ -24,7 +24,12 @@
 </head>
 <body>
 	<jsp:include page="menu.jsp"></jsp:include>
-
+	<%
+		String userName = (String) session.getAttribute("userRole");
+		if(userName == null){
+			response.sendRedirect("Login.jsp");	
+		}
+	%>
 	<div class="container">
 		<div class="row main">
 			<div class="panel-heading">

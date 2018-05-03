@@ -27,10 +27,17 @@ public class Logout extends HttpServlet {
 		
 		
 		HttpSession session = request.getSession();
+		if(session.getAttribute("userName") != null){
+			session.removeAttribute("userName");
+		} 
+		
+		if(session.getAttribute("userRole") != null){
+			session.removeAttribute("userRole");
+		}
+		
         session.invalidate();
 		
-		rd = request.getRequestDispatcher("/index.html");
-		rd.forward(request, response);
+        response.sendRedirect("index.html");
 		}
 
 }

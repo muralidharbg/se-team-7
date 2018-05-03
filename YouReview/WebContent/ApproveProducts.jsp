@@ -36,8 +36,10 @@ td {
 	<jsp:include page="menu.jsp"></jsp:include>
 	<%
 		String userRole = (String) session.getAttribute("userRole");
-		if (userRole.equals("User")) {
+		if (userRole != null && userRole.equals("User")) {
 			response.sendRedirect("MyAccount.jsp");
+		} else if (userRole == null) {
+			response.sendRedirect("Login.jsp");
 		}
 	%>
 	<div class="container">

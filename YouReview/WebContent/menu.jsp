@@ -38,7 +38,7 @@
 			%>
 			<li><a href="MyAccount.jsp" style="color: white"><span
 					class="glyphicon glyphicon-user"></span> My Account</a></li>
-			<li><form action="Logout" method="post"><button style="background-color: black; margin-top: 0.75em"><span
+			<li><form action="Logout" method="post"><button class="btn btn-link logout"><span
 					class="glyphicon glyphicon-log-in"></span> Logout</button></form></li>
 			<%
 				} else {

@@ -39,10 +39,6 @@
 			<button type="button" class="btn btn-light btn-block col-lg-3"
 				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Add
 				Subcategory</button>
-		</a> <a href="AccountDetails.jsp">
-			<button type="button" class="btn btn-light btn-block col-lg-3"
-				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Account
-				Details</button>
 		</a> <a href="ApproveProduct">
 			<button type="button" class="btn btn-light btn-block col-lg-3"
 				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Approve

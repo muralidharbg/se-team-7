@@ -71,3 +71,8 @@ input::-webkit-input-placeholder {
 .thumbnail>img {
 	width: 100%
 }
+
+.logout {
+	margin-top: 8px;
+	color: white !important
+}

@@ -34,6 +34,12 @@
 </head>
 <body style="background-color: #d3d3d3;">
 	<jsp:include page="menu.jsp"></jsp:include>
+	<%
+		String userName = (String) session.getAttribute("userRole");
+		if(userName == null){
+			response.sendRedirect("Login.jsp");	
+		}
+	%>
 	<div class="container">
 		<div class="row">
 			<%

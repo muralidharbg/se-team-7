@@ -27,6 +27,8 @@
 		String userRole = (String) session.getAttribute("userRole");
 		if (userRole != null && userRole.equals("Admin")) {
 			response.sendRedirect("MyAccount_admin.jsp");
+		} else if(userRole == null){
+			response.sendRedirect("Login.jsp");
 		}
 	%>
 	<div class="container">
@@ -41,10 +43,6 @@
 			<button type="button" class="btn btn-light btn-block col-lg-3"
 				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Add
 				Product</button>
-		</a> <a href="AccountDetails.jsp">
-			<button type="button" class="btn btn-light btn-block col-lg-3"
-				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">Account
-				Details</button>
 		</a><a href="AllProductsServlet">
 			<button type="button" class="btn btn-light btn-block col-lg-3"
 				style="padding: 70px; margin: 0 5px 5px 0 !important; width: 25%;">All
