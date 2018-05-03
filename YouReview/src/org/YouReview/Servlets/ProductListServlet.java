@@ -36,14 +36,16 @@ public class ProductListServlet extends HttpServlet {
 		String Brand = request.getParameter("Brand");
 		String Sub_Category_Name = request.getParameter("Sub_Category_Name");
 		String Category_Name = request.getParameter("Category_Name");
-
+		
 		ProductListService pls = new ProductListService();
 		ArrayList<Products> productList = new ArrayList<Products>();
 		try {
 			if (Brand != null && !Brand.equals("")) {
 				productList = pls.getProductsByBrand(Brand);
 			} else if (Sub_Category_Name != null && !Sub_Category_Name.equals("")) {
+				System.out.println("dsfsdfsdfsdf");
 				productList = pls.getProductsBySubCategory(Sub_Category_Name);
+				System.out.println("productList: " + productList.size());
 			} else if (Category_Name != null && !Category_Name.equals("")) {
 				productList = pls.getProductsByCategory(Category_Name);
 			}

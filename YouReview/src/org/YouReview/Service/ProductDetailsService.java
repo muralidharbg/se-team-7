@@ -37,6 +37,7 @@ public class ProductDetailsService extends YourReviewService {
 				productDetails.setAnswer3Avg(getAnswer3Avg(Product_Name));
 				productDetails.setAnswer4Avg(getAnswer4Avg(Product_Name));
 				productDetails.setAnswer5Avg(getAnswer5Avg(Product_Name));
+				productDetails.setSubCategory(getSubCategory(productDetails.getSub_Category_Name()));
 			}
 		} catch (Exception e) {
 			System.out.println("validateLogon: Error while validating password: " + e.getMessage());
@@ -80,7 +81,6 @@ public class ProductDetailsService extends YourReviewService {
 		} finally {
 			conn.close();
 		}
-
 		return reviewList;
 	}
 	
@@ -232,7 +232,7 @@ public class ProductDetailsService extends YourReviewService {
 			ResultSet rs = pst.executeQuery();
 			
 			while (rs.next()) {
-				subCategory.setSubCategoryName(rs.getString("Sub_Category_Name "));
+				subCategory.setSubCategoryName(rs.getString("Sub_Category_Name"));
 				subCategory.setCategoryName(rs.getString("Category_Name"));
 				subCategory.setQuestion1(rs.getString("Question1"));
 				subCategory.setQuestion2(rs.getString("Question2"));

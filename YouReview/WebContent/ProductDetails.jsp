@@ -1,16 +1,172 @@
+<%@page import="org.YouReview.dto.Reviews"%>
+<%@page import="org.YouReview.dto.SubCategory"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="org.YouReview.dto.Products"%>
 <%
 	Products product = (Products) request.getAttribute("productDetails");
+	SubCategory subCategory = product.getSubCategory();
+	ArrayList<Reviews> reviewList = product.getReviews();
+	if (product.getProduct_Name() == null) {
+		//response.sendRedirect("index.html");
+	}
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">  -->
 
-<script>
+<!-- Website CSS style -->
+<!--  <link rel="stylesheet" type="text/css" href="assets/css/main.css">  -->
+
+<!-- Website Font style -->
+<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
+<!-- Google Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Passion+One'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Oxygen'
+	rel='stylesheet' type='text/css'>
+<link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="css/jquery-ui.min.css" rel="stylesheet">
+<link href="css/master.css" rel="stylesheet">
+</head>
+<body style="background-color: #d3d3d3;">
+	<jsp:include page="menu.jsp"></jsp:include>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-4 item-photo">
+				<!-- <img style="max-width:100%;" src="http://img1.cellibrity.net/wp-content/uploads/2017/12/09165700/Apple-iPhone-X-Silver-ATT-Device-CELLibrity.png" />-->
+				<img style="max-width: 100%;" src="<%=product.getImagePath()%>" />
+			</div>
+			<div class="col-xs-5" style="border: 0px solid gray">
+				<!-- Datos del vendedor y titulo del producto -->
+				<h3><%=product.getBrand()%>
+					<%=product.getProduct_Name()%>
+					<%=product.getModel()%></h3>
+				<h5 style="color: #337ab7">
+					Product By <a href="#"><%=product.getBrand()%></a>
+					<%
+						if (reviewList != null && reviewList.size() > 0) {
+					%>
+					<small style="color: #337ab7">(<%=product.getReviews().size()%>
+						Reviews)
+					</small>
+					<%
+						}
+					%>
+				</h5>
+
+				<!-- Detalles especificos del producto -->
+				<%
+					if (subCategory != null) {
+				%>
+				<div class="section" style="padding-bottom: 5px;">
+					<table style="width: 100%">
+						<tr>
+							<th><div class="attr2"><%=subCategory.getQuestion1()%></div>
+								<div id="stars4" class="starrr"
+									data-rating='<%=product.getAnswer1Avg()%>'></div></th>
+							<th>
+								<div class="attr2"><%=subCategory.getQuestion2()%></div>
+								<div id="stars4" class="starrr"
+									data-rating='<%=product.getAnswer2Avg()%>'></div>
+							</th>
+							<th>
+								<div class="attr2"><%=subCategory.getQuestion3()%></div>
+								<div id="stars4" class="starrr"
+									data-rating='<%=product.getAnswer3Avg()%>'></div>
+							</th>
+						</tr>
+						<tr>
+							<th>
+								<div class="attr2"><%=subCategory.getQuestion4()%></div>
+								<div id="stars4" class="starrr"
+									data-rating='<%=product.getAnswer4Avg()%>'></div>
+							</th>
+							<th>
+								<div class="attr2"><%=subCategory.getQuestion5()%></div>
+								<div id="stars4" class="starrr"
+									data-rating='<%=product.getAnswer5Avg()%>'></div>
+							</th>
+						</tr>
+					</table>
+				</div>
+				<%
+					}
+				%>
+			</div>
+		</div>
+
+		<div class="col-xs-9">
+			<div style="width: 100%; border-top: 1px solid silver">
+				<p style="padding: 15px;">
+					<small> <%=product.getDescription()%>
+					</small>
+				</p>
+				<!-- <small>
+                            <ul>
+                                <li>Super AMOLED capacitive touchscreen display with 16M colors</li>
+                                <li>Available on GSM, AT T, T-Mobile and other carriers</li>
+                                <li>Compatible with GSM 850 / 900 / 1800; HSDPA 850 / 1900 / 2100 LTE; 700 MHz Class 17 / 1700 / 2100 networks</li>
+                                <li>MicroUSB and USB connectivity</li>
+                                <li>Interfaces with Wi-Fi 802.11 a/b/g/n/ac, dual band and Bluetooth</li>
+                                <li>Wi-Fi hotspot to keep other devices online when a connection is not available</li>
+                                <li>SMS, MMS, email, Push Mail, IM and RSS messaging</li>
+                                <li>Front-facing camera features autofocus, an LED flash, dual video call capability and a sharp 4128 x 3096 pixel picture</li>
+                                <li>Features 16 GB memory and 2 GB RAM</li>
+                                <li>Upgradeable Jelly Bean v4.2.2 to Jelly Bean v4.3 Android OS</li>
+                                <li>17 hours of talk time, 350 hours standby time on one charge</li>
+                                <li>Available in white or black</li>
+                                <li>Model I337</li>
+                                <li>Package includes phone, charger, battery and user manual</li>
+                                <li>Phone is 5.38 inches high x 2.75 inches wide x 0.13 inches deep and weighs a mere 4.59 oz </li>
+                            </ul>  
+                        </small>  -->
+			</div>
+			<div class="row">
+				<div class="col-sm-7">
+					<hr />
+					<div class="review-block">
+						<%
+							if (reviewList != null) {
+								for (int i = 0; i < reviewList.size(); i++) {
+									Reviews review = reviewList.get(i);
+									int avgRating = (review.getAnswer1() + review.getAnswer2() + review.getAnswer3()
+											+ review.getAnswer4() + review.getAnswer5()) / 5;
+						%>
+
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="review-block-name">
+									<a href="#"><%=review.getUser_UserName()%></a>
+								</div>
+							</div>
+							<div class="col-sm-9">
+								<div class="review-block-rate">
+									<div id="stars4" class="starrr" data-rating='<%=avgRating%>'></div>
+								</div>
+								<div class="review-block-description"><%=review.getComment()%></div>
+							</div>
+						</div>
+						<hr />
+						<%
+							}
+							}
+						%>
+					</div>
+				</div>
+			</div>
+			<br> <a
+				href="WriteReviewServlet?Product_Name=<%=product.getProduct_Name()%>">
+				<button id="myButton"
+					class="btn btn-primary btn-lg btn-block login-button"
+					style="width: 250px; margin-left: 0px;">Write Review</button>
+			</a>
+		</div>
+	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
+	<script>
 var __slice = [].slice;
 (function($, window) {
   var Starrr;
@@ -101,169 +257,5 @@ $(function() {
   return $(".starrr").starrr();
 });
 </script>
-
-</head>
-    <body style="background-color:#d3d3d3;">
-    <nav class="navbar navbar-default" role="navigation" style="background-color: black; color: white">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" href="index.html" style="color: white">YouReview</a>
-  </div>
-
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <div class="col-sm-8 col-md-8">
-        <form class="navbar-form" role="search">
-        <div class="input-group col-sm-8 col-md-8">
-            <input type="text" class="form-control" placeholder="Search" name="q">
-            <div class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-            </div>
-        </div>
-        </form>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-    		<li><a href="#" style="color: white">Home</a></li>
-    		<li><a href="#" style="color: white">Categories</a></li>
-      	<li><a href="Register.jsp" style="color: white"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
-      
-    </ul>
-  </div><!-- /.navbar-collapse -->
-</nav>
-        <div class="container">
-        	<div class="row">
-               <div class="col-xs-4 item-photo">
-                    <!-- <img style="max-width:100%;" src="http://img1.cellibrity.net/wp-content/uploads/2017/12/09165700/Apple-iPhone-X-Silver-ATT-Device-CELLibrity.png" />-->
-                    <img style="max-width:100%;" src="<%=product.getImagePath()%>" />
-                </div>
-                <div class="col-xs-5" style="border:0px solid gray">
-                    <!-- Datos del vendedor y titulo del producto -->
-                    <h3><%=product.getBrand()%> <%=product.getProduct_Name()%> <%=product.getModel()%></h3>    
-                    <h5 style="color:#337ab7">Product By <a href="#"><%=product.getBrand()%></a> · <small style="color:#337ab7">(5054 Reviews)</small></h5>
-        
-                    <!-- Precios -->
-                    <h6 class="title-price"><small>Price</small></h6>
-                    
-                    <!-- Detalles especificos del producto -->
-                    <div class="section" style="padding-bottom:5px;">
-                        <table style="width:100%">
-							  <tr>
-							    	<th><div class="attr2">Battery</div>
-	                        			<div id="stars4" class="starrr" data-rating='4'></div>
-	                        		</th>
-							    <th>
-							    <div class="attr2">Screen</div>
-	                        		<div id="stars4" class="starrr" data-rating='4'></div>
-	                        		</th> 
-	                        		<th>
-	                        		 <div class="attr2">Performance</div>
-	                        		<div id="stars4" class="starrr" data-rating='4'></div>
-	                        		</th>
-							  </tr>
-							  <tr>
-							    <th>
-							    <div class="attr2">Build</div>
-	                        		<div id="stars4" class="starrr" data-rating='4'></div>
-	                        		</th>
-	                        		<th>
-	                        		<div class="attr2">Camera</div>
-	                        		<div id="stars4" class="starrr" data-rating='4'></div>
-	                        		</th>
-							  </tr>
-						</table>                        
-                        </div>
-                    </div>   
-                </div>                              
-        
-                <div class="col-xs-9">
-                    <div style="width:100%;border-top:1px solid silver">
-                        <p style="padding:15px;">
-                            <small>
-                            <%=product.getDescription()%>
-                            </small>
-                        </p>
-                        <!-- <small>
-                            <ul>
-                                <li>Super AMOLED capacitive touchscreen display with 16M colors</li>
-                                <li>Available on GSM, AT T, T-Mobile and other carriers</li>
-                                <li>Compatible with GSM 850 / 900 / 1800; HSDPA 850 / 1900 / 2100 LTE; 700 MHz Class 17 / 1700 / 2100 networks</li>
-                                <li>MicroUSB and USB connectivity</li>
-                                <li>Interfaces with Wi-Fi 802.11 a/b/g/n/ac, dual band and Bluetooth</li>
-                                <li>Wi-Fi hotspot to keep other devices online when a connection is not available</li>
-                                <li>SMS, MMS, email, Push Mail, IM and RSS messaging</li>
-                                <li>Front-facing camera features autofocus, an LED flash, dual video call capability and a sharp 4128 x 3096 pixel picture</li>
-                                <li>Features 16 GB memory and 2 GB RAM</li>
-                                <li>Upgradeable Jelly Bean v4.2.2 to Jelly Bean v4.3 Android OS</li>
-                                <li>17 hours of talk time, 350 hours standby time on one charge</li>
-                                <li>Available in white or black</li>
-                                <li>Model I337</li>
-                                <li>Package includes phone, charger, battery and user manual</li>
-                                <li>Phone is 5.38 inches high x 2.75 inches wide x 0.13 inches deep and weighs a mere 4.59 oz </li>
-                            </ul>  
-                        </small>  -->
-                    </div>
-                    <div class="row">
-			<div class="col-sm-7">
-				<hr/>
-				<div class="review-block">
-					<div class="row">
-						<div class="col-sm-3">
-							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-							<div class="review-block-name"><a href="#">nktailor</a></div>
-							<div class="review-block-date">January 29, 2016<br/>1 day ago</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="review-block-rate">
-								<div id="stars4" class="starrr" data-rating='4'></div>
-							</div>
-							<div class="review-block-title">this was nice in buy</div>
-							<div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-						</div>
-					</div>
-					<hr/>
-					<div class="row">
-						<div class="col-sm-3">
-							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-							<div class="review-block-name"><a href="#">nktailor</a></div>
-							<div class="review-block-date">January 29, 2016<br/>1 day ago</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="review-block-rate">
-								<div id="stars4" class="starrr" data-rating='4'></div>
-							</div>
-							<div class="review-block-title">this was nice in buy</div>
-							<div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-						</div>
-					</div>
-					<hr/>
-					<div class="row">
-						<div class="col-sm-3">
-							<img src="https://orig00.deviantart.net/cf55/f/2016/058/f/8/profile_picture_by_diedummydie-d9taee7.jpg" style="width: 50px; hight: 50px;" class="img-rounded">
-							<div class="review-block-name"><a href="#">nktailor</a></div>
-							<div class="review-block-date">January 29, 2016<br/>1 day ago</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="review-block-rate">
-								<div id="stars4" class="starrr" data-rating='4'></div>
-							</div>
-							<div class="review-block-title">this was nice in buy</div>
-							<div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<br>                    
-             <a href="WriteReviewServlet?Product_Name=<%=product.getProduct_Name()%>">
-			<button id="myButton" class="btn btn-primary btn-lg btn-block login-button" style="width: 250px;margin-left:0px;">Write Review</button>
-			</a>
-                </div>		
-            </div>    
-    </body>
+</body>
 </html>

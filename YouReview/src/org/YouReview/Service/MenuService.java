@@ -10,7 +10,6 @@ import java.util.Map;
 public class MenuService extends YourReviewService {
 	public HashMap<String, ArrayList<String>> getMenuTree() throws Exception {
 		Connection conn = null;
-		System.out.println("asdasd");
 		HashMap<String, ArrayList<String>> menuTree = new HashMap<String, ArrayList<String>>();
 
 		try {
@@ -21,7 +20,6 @@ public class MenuService extends YourReviewService {
 
 			while (rs.next()) {
 				String key = rs.getString("Category_Name");
-				System.out.println("key: " + key);
 				if (!menuTree.containsKey(key)) {
 					menuTree.put(key, new ArrayList<String>());
 				}

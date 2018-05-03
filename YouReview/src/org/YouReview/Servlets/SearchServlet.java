@@ -50,7 +50,6 @@ public class SearchServlet extends HttpServlet {
 
 			JSONArray responseData = new JSONArray();
 			searchResults.forEach((key, list) -> {
-				System.out.println("list.size: " + list.size());
 				if (list.size() > 0) {
 					list.forEach(item -> {
 						JSONObject entry = new JSONObject();

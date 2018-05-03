@@ -26,11 +26,12 @@ public class ProductDetailsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String Product_Name = (String) request.getParameter("Product_Name");
-		System.out.println("Product_Name: "+ Product_Name);
+		
 		ProductDetailsService pds = new ProductDetailsService();
 		Products productDetails = new Products();
 		try {
 			productDetails = pds.getProductByName(Product_Name);
+			System.out.println("productDetails: " + productDetails.getProduct_Name());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
