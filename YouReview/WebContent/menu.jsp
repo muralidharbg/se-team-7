@@ -38,8 +38,8 @@
 			%>
 			<li><a href="MyAccount.jsp" style="color: white"><span
 					class="glyphicon glyphicon-user"></span> My Account</a></li>
-			<li><a href="Login.jsp" style="color: white"><span
-					class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+			<li><form action="Logout" method="post"><button style="color: white"><span
+					class="glyphicon glyphicon-log-in"></span> Logout</button></form></li>
 			<%
 				} else {
 			%>
