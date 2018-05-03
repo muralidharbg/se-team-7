@@ -59,7 +59,6 @@
 				{
 					delay : 0,
 					source : function(request, response) {
-						console.log($("#search").val());
 						var search_query = $("#search").val();
 						$.get("search?q=" + search_query, function(
 								server_response) {
@@ -67,9 +66,22 @@
 						});
 					},
 					minLength : 3,
-					select: function( event, ui ) {
-						window.location.href = 'ProductList?' + ui.item.category.replace(" ","_") + '=' + ui.item.value;
+					select : function(event, ui) {
+						window.location.href = 'ProductList?'
+								+ ui.item.category.replace(" ", "_") + '='
+								+ ui.item.value;
 					}
 				});
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$.get("MenuServlet", function(server_response) {
+			console.log(server_response);
+			$.each(server_response, function(key, value){
+				console.log(key);
+				$(".dropdown-menu").append("<li><a href='SubCategoryList?Category_Name="+key+"'>"+key+"</a></li>");
+			});
+		});
 	});
 </script>

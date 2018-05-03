@@ -1,7 +1,6 @@
 
 <%
 	String userRole = (String) session.getAttribute("userRole");
-	
 %>
 <nav class="navbar navbar-default" role="navigation"
 	style="background-color: black; color: white">
@@ -32,21 +31,29 @@
 		</div>
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="#" style="color: white">Home</a></li>
-			<li><a href="#" style="color: white">Categories</a></li>
+			<li>
+				<button class="btn dropdown-toggle category" type="button"
+					data-toggle="dropdown">
+					Categories <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+				</ul>
+			</li>
 			<%
 				if (userRole != null) {
 			%>
 			<li><a href="MyAccount.jsp" style="color: white"><span
 					class="glyphicon glyphicon-user"></span> My Account</a></li>
-			<li><form action="Logout" method="post"><button class="btn btn-link logout"><span
-					class="glyphicon glyphicon-log-in"></span> Logout</button></form></li>
+			<li><form action="Logout" method="post">
+					<button class="btn btn-link logout">
+						<span class="glyphicon glyphicon-log-in"></span> Logout
+					</button>
+				</form></li>
 			<%
 				} else {
 			%>
-			<li><a href="Register.jsp" style="color: white"><span
-					class="glyphicon glyphicon-log-in"></span> Register</a></li>
-			<li><a href="Login.jsp" style="color: white"><span
-					class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			<li><a href="Register.jsp" style="color: white">Register</a></li>
+			<li><a href="Login.jsp" style="color: white">Login</a></li>
 			<%
 				}
 			%>
