@@ -33,7 +33,7 @@ public class AddProductService extends YourReviewService {
 		return rs;
 	}
 	
-	public boolean AddProduct(String Product_Name, String Sub_Category_Name,String User_Name,String Brand,String Model,InputStream image,String Description) throws Exception
+	public boolean AddProduct(String Product_Name, String Sub_Category_Name,String User_Name,String Brand,String Model,InputStream image,String Description,String ImagePath) throws Exception
 	{
 		Connection conn = null;
 		boolean status = false;
@@ -52,7 +52,7 @@ public class AddProductService extends YourReviewService {
 			else
 			{
 				java.sql.Statement st = conn.createStatement();
-				String sql_statement ="insert into Products (Product_Name,Sub_Category_Name,User_Name,Brand,Model,Image,Description) values (\'"+Product_Name+"\',\'"+Sub_Category_Name+"\', \'"+User_Name+"\',\'"+Brand+"\',\'"+Model+"\',\'"+image+"\',\'"+Description+"\')";
+				String sql_statement ="insert into Products (Product_Name,Sub_Category_Name,User_Name,Brand,Model,Image,Description,ImagePath) values (\'"+Product_Name+"\',\'"+Sub_Category_Name+"\', \'"+User_Name+"\',\'"+Brand+"\',\'"+Model+"\',\'"+image+"\',\'"+Description+"\',\'"+ImagePath+"\')";
 					
 				st.executeUpdate(sql_statement);
 				status = true;

@@ -13,6 +13,7 @@ public class Products {
 	private String Description;
 	private String Category_name;
 	private Blob Image;
+	private String ImagePath;
 	private ArrayList<Reviews> Reviews;
 	private int Answer1Avg;
 	private int Answer2Avg;
@@ -21,6 +22,12 @@ public class Products {
 	private int Answer5Avg;
 	private SubCategory subCategory;
 	
+	public String getImagePath() {
+		return ImagePath;
+	}
+	public void setImagePath(String imagePath) {
+		ImagePath = imagePath;
+	}
 	public String getProduct_Name() {
 		return Product_Name;
 	}

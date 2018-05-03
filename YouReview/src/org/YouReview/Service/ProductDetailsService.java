@@ -30,6 +30,7 @@ public class ProductDetailsService extends YourReviewService {
 				productDetails.setModel(rs.getString("Model"));
 				productDetails.setCategory_name(rs.getString("Category_Name"));
 				productDetails.setDescription(rs.getString("Description"));
+				productDetails.setImagePath(rs.getString("ImagePath"));
 				productDetails.setReviews(getReviewsByProductName(productDetails.getProduct_Name()));
 				productDetails.setAnswer1Avg(getAnswer1Avg(Product_Name));
 				productDetails.setAnswer2Avg(getAnswer2Avg(Product_Name));

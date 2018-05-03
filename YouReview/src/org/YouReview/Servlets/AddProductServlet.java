@@ -1,5 +1,6 @@
 package org.YouReview.Servlets;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -109,9 +110,19 @@ public class AddProductServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	private static final String SAVE_DIR = "uploadFiles";
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// gets absolute path of the web application
+        String appPath = request.getServletContext().getRealPath("");
+        // constructs path of the directory to save uploaded file
+        
+        System.out.println(appPath+"apppath");
+                
+        String savePath = appPath + File.separator + SAVE_DIR;
 
+        System.out.println(savePath+"savepath");
+        
 		String Sub_Categories = request.getParameter("subCategory");
 		
 		if(Sub_Categories.equals("one"))
@@ -119,7 +130,7 @@ public class AddProductServlet extends HttpServlet {
 			System.out.println("havent selected yet");
 		}
 		else
-		{
+		{			
 			String SubCategory = request.getParameter("subCategory");
 			String ProductName = request.getParameter("productName");
 			String ProductBrand = request.getParameter("productBrand");
@@ -129,10 +140,18 @@ public class AddProductServlet extends HttpServlet {
 			Part filePart = request.getPart("productImage");
 			InputStream inputStream = filePart.getInputStream();
 
-			AddProductService aps = new AddProductService();
+			String Path = "/Users/StudSince95/se-team-7/YouReview/WebContent/images";
+			
+			String imagepath = Path+"/"+extractFileName(filePart); 
+			System.out.println(imagepath);
+			
+			filePart.write(imagepath);
+			
+			AddProductService aps = new AddProductService();					
+			
 			
 			try {
-				aps.AddProduct(ProductName,SubCategory,User_Name,ProductBrand,ProductModel,inputStream,ProductDescription);
+				aps.AddProduct(ProductName,SubCategory,User_Name,ProductBrand,ProductModel,inputStream,ProductDescription,imagepath);
 			} catch (Exception e) {
 				System.out.println("Sex thai gayu");
 				e.printStackTrace();
@@ -144,5 +163,15 @@ public class AddProductServlet extends HttpServlet {
 		
 		doGet(request, response);
 	}
+	private String extractFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("filename")) {
+                return s.substring(s.indexOf("=") + 2, s.length()-1);
+            }
+        }
+        return "";
+    }
 
 }

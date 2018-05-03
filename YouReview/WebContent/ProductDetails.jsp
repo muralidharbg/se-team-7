@@ -11,23 +11,18 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <script>
-
 var __slice = [].slice;
-
 (function($, window) {
   var Starrr;
-
   Starrr = (function() {
     Starrr.prototype.defaults = {
       rating: void 0,
       numStars: 5,
       change: function(e, value) {}
     };
-
     function Starrr($el, options) {
       var i, _, _ref,
         _this = this;
-
       this.options = $.extend({}, this.defaults, options);
       this.$el = $el;
       _ref = this.defaults;
@@ -50,17 +45,14 @@ var __slice = [].slice;
       });
       this.$el.on('starrr:change', this.options.change);
     }
-
     Starrr.prototype.createStars = function() {
       var _i, _ref, _results;
-
       _results = [];
       for (_i = 1, _ref = this.options.numStars; 1 <= _ref ? _i <= _ref : _i >= _ref; 1 <= _ref ? _i++ : _i--) {
         _results.push(this.$el.append("<span class='glyphicon .glyphicon-star-empty'></span>"));
       }
       return _results;
     };
-
     Starrr.prototype.setRating = function(rating) {
       if (this.options.rating === rating) {
         rating = void 0;
@@ -69,10 +61,8 @@ var __slice = [].slice;
       this.syncRating();
       return this.$el.trigger('starrr:change', rating);
     };
-
     Starrr.prototype.syncRating = function(rating) {
       var i, _i, _j, _ref;
-
       rating || (rating = this.options.rating);
       if (rating) {
         for (i = _i = 0, _ref = rating - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
@@ -88,18 +78,14 @@ var __slice = [].slice;
         return this.$el.find('span').removeClass('glyphicon-star').addClass('glyphicon-star-empty');
       }
     };
-
     return Starrr;
-
   })();
   return $.fn.extend({
     starrr: function() {
       var args, option;
-
       option = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
       return this.each(function() {
         var data;
-
         data = $(this).data('star-rating');
         if (!data) {
           $(this).data('star-rating', (data = new Starrr($(this), option)));
@@ -111,12 +97,9 @@ var __slice = [].slice;
     }
   });
 })(window.jQuery, window);
-
 $(function() {
   return $(".starrr").starrr();
 });
-
-
 </script>
 
 </head>
@@ -156,7 +139,8 @@ $(function() {
         <div class="container">
         	<div class="row">
                <div class="col-xs-4 item-photo">
-                    <img style="max-width:100%;" src="http://img1.cellibrity.net/wp-content/uploads/2017/12/09165700/Apple-iPhone-X-Silver-ATT-Device-CELLibrity.png" />
+                    <!-- <img style="max-width:100%;" src="http://img1.cellibrity.net/wp-content/uploads/2017/12/09165700/Apple-iPhone-X-Silver-ATT-Device-CELLibrity.png" />-->
+                    <img style="max-width:100%;" src="<%=product.getImagePath()%>" />
                 </div>
                 <div class="col-xs-5" style="border:0px solid gray">
                     <!-- Datos del vendedor y titulo del producto -->
