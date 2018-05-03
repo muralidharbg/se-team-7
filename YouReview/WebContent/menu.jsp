@@ -1,9 +1,7 @@
 
 <%
 	String userRole = (String) session.getAttribute("userRole");
-	if (userRole.equals("Admin")) {
-		response.sendRedirect("MyAccount_admin.jsp");
-	}
+	
 %>
 <nav class="navbar navbar-default" role="navigation"
 	style="background-color: black; color: white">
@@ -35,8 +33,23 @@
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="#" style="color: white">Home</a></li>
 			<li><a href="#" style="color: white">Categories</a></li>
-			<li><a href="Register.jsp" style="color: white"><span
+			<%
+				if (userRole != null) {
+			%>
+			<li><a href="MyAccount.jsp" style="color: white"><span
 					class="glyphicon glyphicon-user"></span> My Account</a></li>
+			<li><a href="Login.jsp" style="color: white"><span
+					class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+			<%
+				} else {
+			%>
+			<li><a href="Register.jsp" style="color: white"><span
+					class="glyphicon glyphicon-log-in"></span> Register</a></li>
+			<li><a href="Login.jsp" style="color: white"><span
+					class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			<%
+				}
+			%>
 		</ul>
 	</div>
 	<!-- /.navbar-collapse -->

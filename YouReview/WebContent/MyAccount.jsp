@@ -23,6 +23,12 @@
 </head>
 <body style="background-color: #d3d3d3;">
 	<jsp:include page="menu.jsp"></jsp:include>
+	<%
+		String userRole = (String) session.getAttribute("userRole");
+		if (userRole != null && userRole.equals("Admin")) {
+			response.sendRedirect("MyAccount_admin.jsp");
+		}
+	%>
 	<div class="container">
 		<h1>
 			Hello,
