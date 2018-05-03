@@ -1,3 +1,10 @@
+
+<%
+	String userRole = (String) session.getAttribute("userRole");
+	if (userRole.equals("Admin")) {
+		response.sendRedirect("MyAccount_admin.jsp");
+	}
+%>
 <nav class="navbar navbar-default" role="navigation"
 	style="background-color: black; color: white">
 

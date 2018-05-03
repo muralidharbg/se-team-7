@@ -276,7 +276,7 @@ $(function() {
 			</div>
 		</div>
 		<br>                    
-             <a href="WriteReview.jsp">
+             <a href="WriteReviewServlet?Product_Name=<%=product.getProduct_Name()%>">
 			<button id="myButton" class="btn btn-primary btn-lg btn-block login-button" style="width: 250px;margin-left:0px;">Write Review</button>
 			</a>
                 </div>		

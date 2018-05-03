@@ -22,13 +22,6 @@
 <link href="css/master.css" rel="stylesheet">
 </head>
 <body style="background-color: #d3d3d3;">
-	<%
-		String userRole = (String) session.getAttribute("userRole");
-		if (userRole.equals("Admin")) {
-			response.sendRedirect("MyAccount_admin.jsp");
-		}
-	%>
-
 	<jsp:include page="menu.jsp"></jsp:include>
 	<div class="container">
 		<h1>
