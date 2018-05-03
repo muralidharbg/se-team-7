@@ -11,7 +11,7 @@ public class YourReviewService {
 		String driver = "com.mysql.jdbc.Driver";
 		try {
 			Class.forName(driver).newInstance();
-			conn = DriverManager.getConnection(url, "root", "root");
+			conn = DriverManager.getConnection(url, "root", "12345678");
 		} catch (SQLException sqle) {
 			System.out.println("SQLException: Unable to open connection to db: " + sqle.getMessage());
 

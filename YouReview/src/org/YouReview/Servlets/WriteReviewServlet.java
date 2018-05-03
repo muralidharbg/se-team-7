@@ -69,9 +69,10 @@ public class WriteReviewServlet extends HttpServlet {
 		
 		wrs.writeReview(Product_Name, User_UserName, Answer1, Answer2, Answer3, Answer4, Answer5, Comment);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("ProductDetails?Product_Name="+Product_Name);
-		rd.forward(request, response);
-		doGet(request, response);
+//		RequestDispatcher rd = request.getRequestDispatcher("ProductDetails?Product_Name="+Product_Name);
+//		rd.forward(request, response);
+//		doGet(request, response);
+		response.sendRedirect("ProductDetails?Product_Name="+Product_Name);
 	}
 
 }
